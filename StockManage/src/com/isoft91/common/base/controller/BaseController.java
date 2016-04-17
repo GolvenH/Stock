@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -95,7 +96,7 @@ public class BaseController  extends PaginationController{
 	 * @param downLoadFileName 下载时显示的文件名包含扩展名
 	 * @example 调用示例：   globalCommonFileDownload("E:/heihei/0F39A0C1379047CF9049AE131E889BB3.doc", "file.doc");
 	 */
-	protected void globalCommonFileDownload(String savingFileAbsolutePath,String downLoadFileName) {
+	protected void globalCommonFileDownload(HttpServletResponse response ,String savingFileAbsolutePath,String downLoadFileName) {
 		response.setCharacterEncoding("UTF-8");
 		response.reset();
 		response.setContentType("multipart/form-data"); 

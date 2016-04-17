@@ -19,7 +19,8 @@ public class PoBean {
 	private PoBean(){}
 
 	private String name="pobean";
-	private Date date;
+	
+	private  Date date ;
 
 	public String getName() {
 		return name;

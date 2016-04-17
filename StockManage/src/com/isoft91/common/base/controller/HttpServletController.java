@@ -20,14 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class HttpServletController {
 
-	@Autowired
-    protected HttpServletRequest request;
-    
-    @Autowired
-    protected HttpSession session;
-    
-    @Autowired
-    protected HttpServletResponse response;
     
     protected static final String REDIRECT = "redirect";
 

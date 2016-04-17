@@ -1,6 +1,7 @@
 package com.isoft.stockplus.manager.contorller;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,28 +15,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.isoft.stockplus.manager.service.Service;
+import com.isoft.stockplus.manager.po.SysSignin;
+import com.isoft.stockplus.manager.service.SysSinginService;
 import com.isoft.stockplus.manager.test.PoBean;
 import com.isoft91.common.base.controller.BaseController;
 
+/**
+ * @ProjectName:MVCProject
+ * @Description: 
+ * @Copyright: Copyright (c) 2016
+ * @Company:天津市融创软通科技有限公司
+ * @author: 周楠
+ * @date 2016年4月15日 下午6:46:00
+ */
 
 
-@RequestMapping("/cont1")
+@RequestMapping("/con1")
 @Controller
 public class Controller1  extends BaseController{
 	
 
 	@Autowired
-	private Service s1 ;
+	private SysSinginService s1 ;
 	
-	public Service getS1() {
-		return s1;
-	}
-
-	public void setS1(Service s1) {
-		this.s1 = s1;
-	}
-
 	
 	/**
 	 * 请求转发 模式   可以是String   ModelAndView  
@@ -90,15 +92,20 @@ public class Controller1  extends BaseController{
 	@ResponseBody
 	public Object testJson(){
 	
-		
-		PoBean po=PoBean.getnewInstance();
-		
-		
-		po.setName("测试的名字");
-		po.setDate(new Date());
-		
-		return po;
+		List list = s1.selectList();
+	
+		return list;
 
 	}
+	
+	
+	@RequestMapping("/add.do")
+	@ResponseBody
+	public Object addObject(SysSignin singin){
+			
+		return s1.addSysSignin(singin);
+	
+	}
+	
 	
 }

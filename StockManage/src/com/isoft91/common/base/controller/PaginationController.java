@@ -1,5 +1,7 @@
 package com.isoft91.common.base.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.isoft91.common.base.entity.BaseCommonEntity;
@@ -29,7 +31,7 @@ public class PaginationController extends HttpServletController{
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public PaginationUtility<? extends BaseCommonEntity> getPaginationUtility() {
+	public PaginationUtility<? extends BaseCommonEntity> getPaginationUtility(HttpServletRequest request) {
 		PaginationUtility<? extends BaseCommonEntity> paginationUtility = (PaginationUtility<? extends BaseCommonEntity>) request.getAttribute(PAGNATIONKEY);
 		if(paginationUtility==null){
 			throw new NullPointerException("未传递分页参数（page&rows），却在方法中使用paginationUtility对象。");
@@ -55,7 +57,7 @@ public class PaginationController extends HttpServletController{
 	 * @param order 排序方式
 	 */
 	@ModelAttribute  
-	private void setPagnationAttribute(Integer rows,Integer page,String sort,String order){
+	private void setPagnationAttribute(HttpServletRequest request,Integer rows,Integer page,String sort,String order){
 		if(rows!=null&&page!=null&&sort!=null&&order!=null){
 			PaginationUtility<? extends BaseCommonEntity> _paginationUtility = new PaginationUtility<>();
 			_paginationUtility.setPageNum(page);
