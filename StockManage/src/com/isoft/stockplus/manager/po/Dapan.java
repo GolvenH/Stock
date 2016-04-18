@@ -1,29 +1,40 @@
 package com.isoft.stockplus.manager.po;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Dapan entity. @author MyEclipse Persistence Tools
  */
-
-public class Dapan implements java.io.Serializable {
+@Entity
+@Table(name = "dapan", catalog = "stockplus")
+public class Dapan implements java.io.Serializable
+{
 
 	// Fields
 
 	private Integer dapanId;
 	private String dapanName;
-	private Double dapanDot;
-	private Double dapanNowpic;
-	private Double dapanTraAmount;
-	private Double dapanTranumber;
+	private double dapanDot;
+	private double dapanNowpic;
+	private double dapanTraAmount;
+	private double dapanTranumber;
 
 	// Constructors
 
 	/** default constructor */
-	public Dapan() {
+	public Dapan()
+	{
 	}
 
 	/** full constructor */
-	public Dapan(String dapanName, Double dapanDot, Double dapanNowpic,
-			Double dapanTraAmount, Double dapanTranumber) {
+	public Dapan(String dapanName, double dapanDot, double dapanNowpic,
+			double dapanTraAmount, double dapanTranumber)
+	{
 		this.dapanName = dapanName;
 		this.dapanDot = dapanDot;
 		this.dapanNowpic = dapanNowpic;
@@ -32,52 +43,71 @@ public class Dapan implements java.io.Serializable {
 	}
 
 	// Property accessors
-
-	public Integer getDapanId() {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "dapan_id", unique = true, nullable = false)
+	public Integer getDapanId()
+	{
 		return this.dapanId;
 	}
 
-	public void setDapanId(Integer dapanId) {
+	public void setDapanId(Integer dapanId)
+	{
 		this.dapanId = dapanId;
 	}
 
-	public String getDapanName() {
+	@Column(name = "dapan_name")
+	public String getDapanName()
+	{
 		return this.dapanName;
 	}
 
-	public void setDapanName(String dapanName) {
+	public void setDapanName(String dapanName)
+	{
 		this.dapanName = dapanName;
 	}
 
-	public Double getDapanDot() {
+	@Column(name = "dapan_dot", precision = 255, scale = 0)
+	public double getDapanDot()
+	{
 		return this.dapanDot;
 	}
 
-	public void setDapanDot(Double dapanDot) {
+	public void setDapanDot(double dapanDot)
+	{
 		this.dapanDot = dapanDot;
 	}
 
-	public Double getDapanNowpic() {
+	@Column(name = "dapan_nowpic", precision = 255, scale = 0)
+	public double getDapanNowpic()
+	{
 		return this.dapanNowpic;
 	}
 
-	public void setDapanNowpic(Double dapanNowpic) {
+	public void setDapanNowpic(double dapanNowpic)
+	{
 		this.dapanNowpic = dapanNowpic;
 	}
 
-	public Double getDapanTraAmount() {
+	@Column(name = "dapan_traAmount", precision = 255, scale = 0)
+	public double getDapanTraAmount()
+	{
 		return this.dapanTraAmount;
 	}
 
-	public void setDapanTraAmount(Double dapanTraAmount) {
+	public void setDapanTraAmount(double dapanTraAmount)
+	{
 		this.dapanTraAmount = dapanTraAmount;
 	}
 
-	public Double getDapanTranumber() {
+	@Column(name = "dapan_tranumber", precision = 22, scale = 0)
+	public double getDapanTranumber()
+	{
 		return this.dapanTranumber;
 	}
 
-	public void setDapanTranumber(Double dapanTranumber) {
+	public void setDapanTranumber(double dapanTranumber)
+	{
 		this.dapanTranumber = dapanTranumber;
 	}
 

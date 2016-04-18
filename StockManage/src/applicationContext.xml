@@ -17,53 +17,37 @@ http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 ">
 
-	<bean id="dataSource"
-	class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="url"
-			value="jdbc:mysql://10.2.7.121:3306/stockplus">
-		</property>
-		<property name="username" value="root"></property>
-		<property name="password" value="root"></property>
-	</bean>
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
+          <!-- 用户名-->  
+          <property name="user" value="root"/>  
+          <!-- 用户密码-->  
+          <property name="password" value="root"/>  
+          <property name="driverClass" value="com.mysql.jdbc.Driver"/>  
+          <property name="jdbcUrl" value="jdbc:mysql://10.2.7.121:3306/stockplus?characterEncoding=utf-8"/>  
+           <!--连接池中保留的最大连接数。默认值: 15 -->   
+          <property name="maxPoolSize" value="30"/>  
+          <!-- 连接池中保留的最小连接数，默认为：3-->  
+          <property name="minPoolSize" value="10"/>  
+          
+     </bean> 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
+		<property name="packagesToScan">
+            <list>
+                <value>com.isoft.stockplus.manager.po</value>
+            </list>
+        </property>
 		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">
-					org.hibernate.dialect.MySQLDialect
-				</prop>
-			</props>
-		</property>
-		<property name="mappingResources">
-			<list>
-				<value>
-					com/isoft/stockplus/manager/po/User.hbm.xml
-				</value>
-				<value>
-					com/isoft/stockplus/manager/po/Bbs.hbm.xml
-				</value>
-				<value>
-					com/isoft/stockplus/manager/po/Dapan.hbm.xml
-				</value>
-				<value>
-					com/isoft/stockplus/manager/po/Site.hbm.xml
-				</value>
-				<value>
-					com/isoft/stockplus/manager/po/UserOpStock.hbm.xml
-				</value>
-				<value>
-					com/isoft/stockplus/manager/po/UserInfo.hbm.xml
-				</value>
-				<value>
-					com/isoft/stockplus/manager/po/UserCapital.hbm.xml
-				</value>
-				<value>
-					com/isoft/stockplus/manager/po/StockInformation.hbm.xml
-				</value></list>
-		</property></bean>
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+	</bean>
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />

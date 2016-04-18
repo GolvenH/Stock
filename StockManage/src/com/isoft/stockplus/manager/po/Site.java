@@ -1,10 +1,19 @@
 package com.isoft.stockplus.manager.po;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Site entity. @author MyEclipse Persistence Tools
  */
-
-public class Site implements java.io.Serializable {
+@Entity
+@Table(name = "site", catalog = "stockplus")
+public class Site implements java.io.Serializable
+{
 
 	// Fields
 
@@ -15,38 +24,50 @@ public class Site implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Site() {
+	public Site()
+	{
 	}
 
 	/** full constructor */
-	public Site(String siteTitle, String siteContent) {
+	public Site(String siteTitle, String siteContent)
+	{
 		this.siteTitle = siteTitle;
 		this.siteContent = siteContent;
 	}
 
 	// Property accessors
-
-	public Integer getSiteId() {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "site_id", unique = true, nullable = false)
+	public Integer getSiteId()
+	{
 		return this.siteId;
 	}
 
-	public void setSiteId(Integer siteId) {
+	public void setSiteId(Integer siteId)
+	{
 		this.siteId = siteId;
 	}
 
-	public String getSiteTitle() {
+	@Column(name = "site_title")
+	public String getSiteTitle()
+	{
 		return this.siteTitle;
 	}
 
-	public void setSiteTitle(String siteTitle) {
+	public void setSiteTitle(String siteTitle)
+	{
 		this.siteTitle = siteTitle;
 	}
 
-	public String getSiteContent() {
+	@Column(name = "site_content")
+	public String getSiteContent()
+	{
 		return this.siteContent;
 	}
 
-	public void setSiteContent(String siteContent) {
+	public void setSiteContent(String siteContent)
+	{
 		this.siteContent = siteContent;
 	}
 

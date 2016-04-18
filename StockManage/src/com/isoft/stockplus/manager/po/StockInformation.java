@@ -1,14 +1,25 @@
 package com.isoft.stockplus.manager.po;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * StockInformation entity. @author MyEclipse Persistence Tools
  */
-
-public class StockInformation implements java.io.Serializable {
+@Entity
+@Table(name = "stock_information", catalog = "stockplus")
+public class StockInformation implements java.io.Serializable
+{
 
 	// Fields
 
@@ -16,26 +27,28 @@ public class StockInformation implements java.io.Serializable {
 	private String stockNum;
 	private String stockName;
 	private String stockCurrent;
-	private Timestamp stockTime;
-	private Double stockPrice;
-	private Set userOpStocks = new HashSet(0);
-	private Set userInfosForStockPrice = new HashSet(0);
-	private Set bbsesForStockName = new HashSet(0);
-	private Set userInfosForStockName = new HashSet(0);
-	private Set bbsesForStockNum = new HashSet(0);
+	private Date stockTime;
+	private double stockPrice;
+	private Set<UserOpStock> userOpStocks = new HashSet<UserOpStock>(0);
+	private Set<UserInfo> userInfosForStockPrice = new HashSet<UserInfo>(0);
+	private Set<Bbs> bbsesForStockName = new HashSet<Bbs>(0);
+	private Set<UserInfo> userInfosForStockName = new HashSet<UserInfo>(0);
+	private Set<Bbs> bbsesForStockNum = new HashSet<Bbs>(0);
 
 	// Constructors
 
 	/** default constructor */
-	public StockInformation() {
+	public StockInformation()
+	{
 	}
 
 	/** full constructor */
 	public StockInformation(String stockNum, String stockName,
-			String stockCurrent, Timestamp stockTime, Double stockPrice,
-			Set userOpStocks, Set userInfosForStockPrice,
-			Set bbsesForStockName, Set userInfosForStockName,
-			Set bbsesForStockNum) {
+			String stockCurrent, Date stockTime, double stockPrice,
+			Set<UserOpStock> userOpStocks,
+			Set<UserInfo> userInfosForStockPrice, Set<Bbs> bbsesForStockName,
+			Set<UserInfo> userInfosForStockName, Set<Bbs> bbsesForStockNum)
+	{
 		this.stockNum = stockNum;
 		this.stockName = stockName;
 		this.stockCurrent = stockCurrent;
@@ -49,92 +62,126 @@ public class StockInformation implements java.io.Serializable {
 	}
 
 	// Property accessors
-
-	public Integer getStockId() {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "stock_id", unique = true, nullable = false)
+	public Integer getStockId()
+	{
 		return this.stockId;
 	}
 
-	public void setStockId(Integer stockId) {
+	public void setStockId(Integer stockId)
+	{
 		this.stockId = stockId;
 	}
 
-	public String getStockNum() {
+	@Column(name = "stock_num")
+	public String getStockNum()
+	{
 		return this.stockNum;
 	}
 
-	public void setStockNum(String stockNum) {
+	public void setStockNum(String stockNum)
+	{
 		this.stockNum = stockNum;
 	}
 
-	public String getStockName() {
+	@Column(name = "stock_name")
+	public String getStockName()
+	{
 		return this.stockName;
 	}
 
-	public void setStockName(String stockName) {
+	public void setStockName(String stockName)
+	{
 		this.stockName = stockName;
 	}
 
-	public String getStockCurrent() {
+	@Column(name = "stock_current")
+	public String getStockCurrent()
+	{
 		return this.stockCurrent;
 	}
 
-	public void setStockCurrent(String stockCurrent) {
+	public void setStockCurrent(String stockCurrent)
+	{
 		this.stockCurrent = stockCurrent;
 	}
 
-	public Timestamp getStockTime() {
+	@Column(name = "stock_time", length = 19)
+	public Date getStockTime()
+	{
 		return this.stockTime;
 	}
 
-	public void setStockTime(Timestamp stockTime) {
+	public void setStockTime(Date stockTime)
+	{
 		this.stockTime = stockTime;
 	}
 
-	public Double getStockPrice() {
+	@Column(name = "stock_price", precision = 22, scale = 0)
+	public double getStockPrice()
+	{
 		return this.stockPrice;
 	}
 
-	public void setStockPrice(Double stockPrice) {
+	public void setStockPrice(double stockPrice)
+	{
 		this.stockPrice = stockPrice;
 	}
 
-	public Set getUserOpStocks() {
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockInformation")
+	public Set<UserOpStock> getUserOpStocks()
+	{
 		return this.userOpStocks;
 	}
 
-	public void setUserOpStocks(Set userOpStocks) {
+	public void setUserOpStocks(Set<UserOpStock> userOpStocks)
+	{
 		this.userOpStocks = userOpStocks;
 	}
 
-	public Set getUserInfosForStockPrice() {
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockInformationByStockPrice")
+	public Set<UserInfo> getUserInfosForStockPrice()
+	{
 		return this.userInfosForStockPrice;
 	}
 
-	public void setUserInfosForStockPrice(Set userInfosForStockPrice) {
+	public void setUserInfosForStockPrice(Set<UserInfo> userInfosForStockPrice)
+	{
 		this.userInfosForStockPrice = userInfosForStockPrice;
 	}
 
-	public Set getBbsesForStockName() {
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockInformationByStockName")
+	public Set<Bbs> getBbsesForStockName()
+	{
 		return this.bbsesForStockName;
 	}
 
-	public void setBbsesForStockName(Set bbsesForStockName) {
+	public void setBbsesForStockName(Set<Bbs> bbsesForStockName)
+	{
 		this.bbsesForStockName = bbsesForStockName;
 	}
 
-	public Set getUserInfosForStockName() {
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockInformationByStockName")
+	public Set<UserInfo> getUserInfosForStockName()
+	{
 		return this.userInfosForStockName;
 	}
 
-	public void setUserInfosForStockName(Set userInfosForStockName) {
+	public void setUserInfosForStockName(Set<UserInfo> userInfosForStockName)
+	{
 		this.userInfosForStockName = userInfosForStockName;
 	}
 
-	public Set getBbsesForStockNum() {
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockInformationByStockNum")
+	public Set<Bbs> getBbsesForStockNum()
+	{
 		return this.bbsesForStockNum;
 	}
 
-	public void setBbsesForStockNum(Set bbsesForStockNum) {
+	public void setBbsesForStockNum(Set<Bbs> bbsesForStockNum)
+	{
 		this.bbsesForStockNum = bbsesForStockNum;
 	}
 

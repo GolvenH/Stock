@@ -1,6 +1,6 @@
 #MyEclipse Hibernate Properties
-#Sun Apr 17 20:17:58 CST 2016
-genBasicCompId=false
+#Mon Apr 18 16:08:04 CST 2016
+genBasicCompId=true
 sessionFactoryName=com.isoft.stockplus.manager.sessionfactory.HibernateSessionFactory
 profile=
 daoSFId=
@@ -9,12 +9,12 @@ detectM2M=false
 reStrategyClass=
 detectO2O=false
 springDaoFile=
-useJavaTypes=true
+useJavaTypes=false
 keyGenerator=identity
 genVersionTag=false
 sessionFactoryId=sessionFactory
 basePersistenceClass=
-genAnnotations=false
-reSettingsFile=
+genAnnotations=true
+reSettingsFile=/StockManage/hibernate.reveng.xml
 configFile=/StockManage/src/applicationContext.xml
 createConfigFile=true

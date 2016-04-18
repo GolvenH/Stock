@@ -23,10 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="static/h-ui/css/H-ui.login.css" rel="stylesheet" type="text/css" />
 <link href="static/h-ui/css/style.css" rel="stylesheet" type="text/css" />
 <link href="lib/Hui-iconfont/1.0.7/iconfont.css" rel="stylesheet" type="text/css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
 <meta name="keywords" content="欢乐股后台管理系统,欢乐股网站管理,Admain登录">
 <meta name="description" content="欢乐股网站是一款由国人开发的轻量级扁平化股票自选模拟学习网站，完全免费注册，模拟炒股，在线论坛，网站现已开源">
 </head>
@@ -69,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </form>
   </div>
 </div>
-<div class="footer">Copyright 欢乐科技有限公司</div>
+<div class="footer">Copyright &copy;欢乐科技有限公司</div>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
 </body>
