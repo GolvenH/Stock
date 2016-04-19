@@ -22,8 +22,8 @@ public class Bbs implements java.io.Serializable
 	// Fields
 
 	private Integer bbsId;
-	private StockInformation stockInformationByStockNum;
-	private StockInformation stockInformationByStockName;
+	private User user;
+	private StockInfo stockInfo;
 	private String bbsContent;
 	private Date bbsTime;
 
@@ -35,12 +35,10 @@ public class Bbs implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public Bbs(StockInformation stockInformationByStockNum,
-			StockInformation stockInformationByStockName, String bbsContent,
-			Date bbsTime)
+	public Bbs(User user, StockInfo stockInfo, String bbsContent, Date bbsTime)
 	{
-		this.stockInformationByStockNum = stockInformationByStockNum;
-		this.stockInformationByStockName = stockInformationByStockName;
+		this.user = user;
+		this.stockInfo = stockInfo;
 		this.bbsContent = bbsContent;
 		this.bbsTime = bbsTime;
 	}
@@ -60,29 +58,27 @@ public class Bbs implements java.io.Serializable
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "stock_num")
-	public StockInformation getStockInformationByStockNum()
+	@JoinColumn(name = "user_id")
+	public User getUser()
 	{
-		return this.stockInformationByStockNum;
+		return this.user;
 	}
 
-	public void setStockInformationByStockNum(
-			StockInformation stockInformationByStockNum)
+	public void setUser(User user)
 	{
-		this.stockInformationByStockNum = stockInformationByStockNum;
+		this.user = user;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "stock_name")
-	public StockInformation getStockInformationByStockName()
+	@JoinColumn(name = "stockinfo_id")
+	public StockInfo getStockInfo()
 	{
-		return this.stockInformationByStockName;
+		return this.stockInfo;
 	}
 
-	public void setStockInformationByStockName(
-			StockInformation stockInformationByStockName)
+	public void setStockInfo(StockInfo stockInfo)
 	{
-		this.stockInformationByStockName = stockInformationByStockName;
+		this.stockInfo = stockInfo;
 	}
 
 	@Column(name = "bbs_content")

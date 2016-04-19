@@ -44,7 +44,22 @@
 			<generator class="identity"></generator>
 		</primary-key>
 	</table>
-<table name="user_op_stock" catalog="stockplus">
+	<table name="user_op_stock" catalog="stockplus">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="stock_info" catalog="stockplus">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+	<table name="stock_data" catalog="stockplus">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+<table name="stock_transaction" catalog="stockplus">
 	<primary-key>
 		<generator class="identity"></generator>
 	</primary-key>

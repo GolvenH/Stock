@@ -52,8 +52,8 @@ public  abstract  class Hibernate4BaseDao<T> {
 	
 	
 	
-	public  T findById(Long id) {
-        return (T) openSession().get(poclazz, id);
+	public  T findById(Integer integer) {
+        return (T) openSession().get(poclazz, integer);
     }
 	
 	public  List<T> findAll() {

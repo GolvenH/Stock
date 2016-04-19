@@ -23,7 +23,7 @@ public class UserOpStock implements java.io.Serializable
 
 	private Integer userOpStockId;
 	private User user;
-	private StockInformation stockInformation;
+	private StockInfo stockInfo;
 	private Date userOpStockTime;
 
 	// Constructors
@@ -34,11 +34,10 @@ public class UserOpStock implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public UserOpStock(User user, StockInformation stockInformation,
-			Date userOpStockTime)
+	public UserOpStock(User user, StockInfo stockInfo, Date userOpStockTime)
 	{
 		this.user = user;
-		this.stockInformation = stockInformation;
+		this.stockInfo = stockInfo;
 		this.userOpStockTime = userOpStockTime;
 	}
 
@@ -69,15 +68,15 @@ public class UserOpStock implements java.io.Serializable
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "stock_id")
-	public StockInformation getStockInformation()
+	@JoinColumn(name = "stockinfo_id")
+	public StockInfo getStockInfo()
 	{
-		return this.stockInformation;
+		return this.stockInfo;
 	}
 
-	public void setStockInformation(StockInformation stockInformation)
+	public void setStockInfo(StockInfo stockInfo)
 	{
-		this.stockInformation = stockInformation;
+		this.stockInfo = stockInfo;
 	}
 
 	@Column(name = "user_op_stock_time", length = 19)

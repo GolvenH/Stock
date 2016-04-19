@@ -1,4 +1,4 @@
-   package com.isoft.stockplus.manager.po;
+package com.isoft.stockplus.manager.po;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,8 +21,8 @@ public class UserInfo implements java.io.Serializable
 	// Fields
 
 	private Integer userInfoId;
-	private StockInformation stockInformationByStockName;
-	private StockInformation stockInformationByStockPrice;
+	private StockInfo stockInfoByStockPrice;
+	private StockInfo stockInfoByStockName;
 	private User user;
 
 	// Constructors
@@ -33,11 +33,11 @@ public class UserInfo implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public UserInfo(StockInformation stockInformationByStockName,
-			StockInformation stockInformationByStockPrice, User user)
+	public UserInfo(StockInfo stockInfoByStockPrice,
+			StockInfo stockInfoByStockName, User user)
 	{
-		this.stockInformationByStockName = stockInformationByStockName;
-		this.stockInformationByStockPrice = stockInformationByStockPrice;
+		this.stockInfoByStockPrice = stockInfoByStockPrice;
+		this.stockInfoByStockName = stockInfoByStockName;
 		this.user = user;
 	}
 
@@ -56,29 +56,27 @@ public class UserInfo implements java.io.Serializable
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "stock_name")
-	public StockInformation getStockInformationByStockName()
+	@JoinColumn(name = "stock_price")
+	public StockInfo getStockInfoByStockPrice()
 	{
-		return this.stockInformationByStockName;
+		return this.stockInfoByStockPrice;
 	}
 
-	public void setStockInformationByStockName(
-			StockInformation stockInformationByStockName)
+	public void setStockInfoByStockPrice(StockInfo stockInfoByStockPrice)
 	{
-		this.stockInformationByStockName = stockInformationByStockName;
+		this.stockInfoByStockPrice = stockInfoByStockPrice;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "stock_price")
-	public StockInformation getStockInformationByStockPrice()
+	@JoinColumn(name = "stock_name")
+	public StockInfo getStockInfoByStockName()
 	{
-		return this.stockInformationByStockPrice;
+		return this.stockInfoByStockName;
 	}
 
-	public void setStockInformationByStockPrice(
-			StockInformation stockInformationByStockPrice)
+	public void setStockInfoByStockName(StockInfo stockInfoByStockName)
 	{
-		this.stockInformationByStockPrice = stockInformationByStockPrice;
+		this.stockInfoByStockName = stockInfoByStockName;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
