@@ -25,7 +25,7 @@ public class StockInfoController extends BaseController {
 	
 	
 	
-	@RequestMapping("/findall")
+	@RequestMapping("/findall.do")
 	@ResponseBody
 	public List<StockInfo> getall(){
 		

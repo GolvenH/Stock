@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-	<title>用户管理</title>
+	<title>股票管理</title>
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -27,51 +27,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="static/h-ui/css/style.css" />
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 用户管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 股票中心 <span class="c-gray en">&gt;</span> 股票管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<input type="text" class="input-text" style="width:250px" placeholder="输入会员名称、电话、邮箱" id="" name="">
+		<input type="text" class="input-text" style="width:250px" placeholder="请输入股票名称或代码...." id="" name="">
 		<button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
 	</div>
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
 			<span class="l">
 		
-			
 			<a href="javascript:;" onclick="findall()" class="btn btn-success radius">
 			<i class="Hui-iconfont">&#xe601;</i>查询全部</a> 
 		
 			<a href="javascript:;" onclick="user_edit()" class="btn btn-secondary radius">
-			<i class="Hui-iconfont">&#xe603;</i>编辑用户</a> 
+			<i class="Hui-iconfont">&#xe603;</i>编辑股票</a> 
 			
 			<a href="javascript:;" onclick="user_delete()" class="btn btn-danger radius">
-			<i class="Hui-iconfont">&#xe6e2;</i>删除用户</a> 
+			<i class="Hui-iconfont">&#xe6e2;</i>删除股票</a> 
 			
 			<a href="javascript:;"	onclick="member_add('添加用户','member-add.jsp','','510')"class="btn btn-primary radius">
-			<i class="Hui-iconfont">&#xe600;</i>添加用户</a></span> 
+			<i class="Hui-iconfont">&#xe600;</i>添加股票</a></span> 
 			
 			<span class="r">共有数据：<strong>88</strong> 条</span>
 		</div>
-		<div class="mt-20">
-			<table
-				class="table table-border table-bordered table-hover table-bg ">
-				<thead>
-					<tr class="text-c">
-						<th width="80">ID</th>
-						<th width="100">用户名</th>
-						<th width="40">性别</th>
-						<th width="90">手机</th>
-						<th width="150">邮箱</th>
-						<th width="">地址</th>
-						<th width="130">加入时间</th>
-						<th width="70">状态</th>
-						<th width="100">操作</th>
-					</tr>
-				</thead>
-				<tbody class="text-c" id="tabless">
-				</tbody>
-			</table>
-		</div>
+			<div class="mt-20">
+	<table class="table table-border table-bordered table-hover table-bg ">
+		<thead>
+			<tr class="text-c">
+				<th width="60">ID</th>
+				<th width="80">股票名称</th>
+				<th width="80">股票代码</th>				
+				<th width="120">股票发行时间</th>
+				<th width="100">股票发行价格</th>
+				<th width="120">当前价格</th>
+				<th width="150">操作</tr>
+		</thead>
+		<tbody class="text-c" id="tabless">
+		
+		</tbody>
+	</table>
 	</div>
+</div>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script> 
@@ -99,21 +95,19 @@ $(function(){
 		}
 	});
 });
-//用户查询全部
+//股票查询全部
 function findall(){
 	
-	 $.ajax({ url: "user/all.do",dataType:"json", success: function(data){		
+	 $.ajax({ url: "stock/findall.do",dataType:"json", success: function(data){		
 		 var table=  $("#tabless");
 		 var tem="";
 		  for(var i=0;i<data.length;i++){
-			  tem+=" <tr> <td>"+data[i].userId+"</td>"+
-			  "<td>"+data[i].userName+"</td>"+
-			  "<td>"+data[i].userTel+"</td> "+
-			  "<td>"+data[i].userSex+"</td>"+
-			  " <td>"+data[i].userAccount+"</td>"+
-			  " <td>"+data[i].userHobby+"</td>"+
-			  " <td>"+data[i].reocrdDate+"</td>"+
-			  " <td>"+data[i].userAccount+"</td>"+
+			  tem+=" <tr> <td>"+data[i].stockinfoId+"</td>"+
+			  "<td>"+data[i].stockinfoName+"</td>"+
+			  "<td>"+data[i].stockinfoNum+"</td> "+
+			  "<td>"+data[i].stockinfoTime+"</td>"+
+			  " <td>"+data[i].stockinfoPrice+"</td>"+
+			  " <td>"+data[i].stockinfoCurrent+"</td>"+
 			  "</tr>";
 		  }
 		  table.empty();
@@ -121,11 +115,11 @@ function findall(){
 	  }
     }).submit();
 }
-/*用户-添加*/
+/*股票-添加*/
 function member_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
-/*用户-查看*/
+/*股票-查看*/
 function member_show(title,url,id,w,h){
 	layer_show(title,url,w,h);
 }
