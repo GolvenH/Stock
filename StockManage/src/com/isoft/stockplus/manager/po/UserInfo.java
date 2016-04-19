@@ -1,4 +1,4 @@
-package com.isoft.stockplus.manager.po;
+   package com.isoft.stockplus.manager.po;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

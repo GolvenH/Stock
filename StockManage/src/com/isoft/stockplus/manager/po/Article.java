@@ -19,6 +19,7 @@ public class Article implements java.io.Serializable
 	// Fields
 
 	private Integer articleId;
+	private String articleName;
 	private String articleType;
 	private Integer articleSort;
 	private String articleKey;
@@ -27,7 +28,7 @@ public class Article implements java.io.Serializable
 	private String articleSou;
 	private Date articleStTime;
 	private Date articleEnTime;
-	private String srticleContent;
+	private String articleContent;
 
 	// Constructors
 
@@ -37,10 +38,12 @@ public class Article implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public Article(String articleType, Integer articleSort, String articleKey,
-			String articleAbst, String articleAuth, String articleSou,
-			Date articleStTime, Date articleEnTime, String srticleContent)
+	public Article(String articleName, String articleType, Integer articleSort,
+			String articleKey, String articleAbst, String articleAuth,
+			String articleSou, Date articleStTime, Date articleEnTime,
+			String articleContent)
 	{
+		this.articleName = articleName;
 		this.articleType = articleType;
 		this.articleSort = articleSort;
 		this.articleKey = articleKey;
@@ -49,7 +52,7 @@ public class Article implements java.io.Serializable
 		this.articleSou = articleSou;
 		this.articleStTime = articleStTime;
 		this.articleEnTime = articleEnTime;
-		this.srticleContent = srticleContent;
+		this.articleContent = articleContent;
 	}
 
 	// Property accessors
@@ -64,6 +67,17 @@ public class Article implements java.io.Serializable
 	public void setArticleId(Integer articleId)
 	{
 		this.articleId = articleId;
+	}
+
+	@Column(name = "article_name")
+	public String getArticleName()
+	{
+		return this.articleName;
+	}
+
+	public void setArticleName(String articleName)
+	{
+		this.articleName = articleName;
 	}
 
 	@Column(name = "article_type")
@@ -154,15 +168,15 @@ public class Article implements java.io.Serializable
 		this.articleEnTime = articleEnTime;
 	}
 
-	@Column(name = "srticle_content")
-	public String getSrticleContent()
+	@Column(name = "article_content")
+	public String getArticleContent()
 	{
-		return this.srticleContent;
+		return this.articleContent;
 	}
 
-	public void setSrticleContent(String srticleContent)
+	public void setArticleContent(String articleContent)
 	{
-		this.srticleContent = srticleContent;
+		this.articleContent = articleContent;
 	}
 
 }

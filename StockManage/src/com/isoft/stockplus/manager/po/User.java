@@ -1,5 +1,6 @@
 package com.isoft.stockplus.manager.po;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -12,148 +13,160 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 /**
  * User entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "user", catalog = "stockplus")
-public class User implements java.io.Serializable
-{
+@Table(name="user"
+    ,catalog="stockplus"
+)
 
-	// Fields
+public class User  implements java.io.Serializable {
 
-	private Integer userId;
-	private String userName;
-	private String userPassword;
-	private String userTel;
-	private String userHobby;
-	private String userSex;
-	private short userAccount;
-	private Set<UserOpStock> userOpStocks = new HashSet<UserOpStock>(0);
-	private Set<UserInfo> userInfos = new HashSet<UserInfo>(0);
 
-	// Constructors
+    // Fields    
 
-	/** default constructor */
-	public User()
-	{
-	}
+     private Integer userId;
+     private String userName;
+     private String userPassword;
+     private String userTel;
+     private String userHobby;
+     private String userSex;
+     private short userAccount;
+     private Date reocrdDate;
+     private Set<UserOpStock> userOpStocks = new HashSet<UserOpStock>(0);
+     private Set<UserInfo> userInfos = new HashSet<UserInfo>(0);
 
-	/** full constructor */
-	public User(String userName, String userPassword, String userTel,
-			String userHobby, String userSex, short userAccount,
-			Set<UserOpStock> userOpStocks, Set<UserInfo> userInfos)
-	{
-		this.userName = userName;
-		this.userPassword = userPassword;
-		this.userTel = userTel;
-		this.userHobby = userHobby;
-		this.userSex = userSex;
-		this.userAccount = userAccount;
-		this.userOpStocks = userOpStocks;
-		this.userInfos = userInfos;
-	}
 
-	// Property accessors
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "user_id", unique = true, nullable = false)
-	public Integer getUserId()
-	{
-		return this.userId;
-	}
+    // Constructors
 
-	public void setUserId(Integer userId)
-	{
-		this.userId = userId;
-	}
+    /** default constructor */
+    public User() {
+    }
 
-	@Column(name = "user_name")
-	public String getUserName()
-	{
-		return this.userName;
-	}
+    
+    /** full constructor */
+    public User(String userName, String userPassword, String userTel, String userHobby, String userSex, short userAccount, Date reocrdDate, Set<UserOpStock> userOpStocks, Set<UserInfo> userInfos) {
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userTel = userTel;
+        this.userHobby = userHobby;
+        this.userSex = userSex;
+        this.userAccount = userAccount;
+        this.reocrdDate = reocrdDate;
+        this.userOpStocks = userOpStocks;
+        this.userInfos = userInfos;
+    }
 
-	public void setUserName(String userName)
-	{
-		this.userName = userName;
-	}
+   
+    // Property accessors
+    @Id @GeneratedValue(strategy=IDENTITY)
+    
+    @Column(name="user_id", unique=true, nullable=false)
 
-	@Column(name = "user_password")
-	public String getUserPassword()
-	{
-		return this.userPassword;
-	}
+    public Integer getUserId() {
+        return this.userId;
+    }
+    
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+    
+    @Column(name="user_name")
 
-	public void setUserPassword(String userPassword)
-	{
-		this.userPassword = userPassword;
-	}
+    public String getUserName() {
+        return this.userName;
+    }
+    
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    
+    @Column(name="user_password")
 
-	@Column(name = "user_tel")
-	public String getUserTel()
-	{
-		return this.userTel;
-	}
+    public String getUserPassword() {
+        return this.userPassword;
+    }
+    
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+    
+    @Column(name="user_tel")
 
-	public void setUserTel(String userTel)
-	{
-		this.userTel = userTel;
-	}
+    public String getUserTel() {
+        return this.userTel;
+    }
+    
+    public void setUserTel(String userTel) {
+        this.userTel = userTel;
+    }
+    
+    @Column(name="user_hobby")
 
-	@Column(name = "user_hobby")
-	public String getUserHobby()
-	{
-		return this.userHobby;
-	}
+    public String getUserHobby() {
+        return this.userHobby;
+    }
+    
+    public void setUserHobby(String userHobby) {
+        this.userHobby = userHobby;
+    }
+    
+    @Column(name="user_sex")
 
-	public void setUserHobby(String userHobby)
-	{
-		this.userHobby = userHobby;
-	}
+    public String getUserSex() {
+        return this.userSex;
+    }
+    
+    public void setUserSex(String userSex) {
+        this.userSex = userSex;
+    }
+    
+    @Column(name="user_account")
 
-	@Column(name = "user_sex")
-	public String getUserSex()
-	{
-		return this.userSex;
-	}
+    public short getUserAccount() {
+        return this.userAccount;
+    }
+    
+    public void setUserAccount(short userAccount) {
+        this.userAccount = userAccount;
+    }
+    
+    @Column(name="reocrd_date", length=19)
 
-	public void setUserSex(String userSex)
-	{
-		this.userSex = userSex;
-	}
+    public Date getReocrdDate() {
+        return this.reocrdDate;
+    }
+    
+    public void setReocrdDate(Date reocrdDate) {
+        this.reocrdDate = reocrdDate;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
 
-	@Column(name = "user_account")
-	public short getUserAccount()
-	{
-		return this.userAccount;
-	}
+    public Set<UserOpStock> getUserOpStocks() {
+        return this.userOpStocks;
+    }
+    
+    public void setUserOpStocks(Set<UserOpStock> userOpStocks) {
+        this.userOpStocks = userOpStocks;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
 
-	public void setUserAccount(short userAccount)
-	{
-		this.userAccount = userAccount;
-	}
+    public Set<UserInfo> getUserInfos() {
+        return this.userInfos;
+    }
+    
+    public void setUserInfos(Set<UserInfo> userInfos) {
+        this.userInfos = userInfos;
+    }
+   
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<UserOpStock> getUserOpStocks()
-	{
-		return this.userOpStocks;
-	}
 
-	public void setUserOpStocks(Set<UserOpStock> userOpStocks)
-	{
-		this.userOpStocks = userOpStocks;
-	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<UserInfo> getUserInfos()
-	{
-		return this.userInfos;
-	}
 
-	public void setUserInfos(Set<UserInfo> userInfos)
-	{
-		this.userInfos = userInfos;
-	}
+
+
+
 
 }

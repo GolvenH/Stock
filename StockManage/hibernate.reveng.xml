@@ -7,7 +7,7 @@
 		<primary-key>
 			<generator class="identity"></generator>
 		</primary-key>
-		<column name="user_name" exclude="true"></column>
+		<column name="user_name"></column>
 	</table>
 	<table name="article" catalog="stockplus">
 		<primary-key>
