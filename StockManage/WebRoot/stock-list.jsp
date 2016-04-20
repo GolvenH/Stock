@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<th width="120">股票发行时间</th>
 				<th width="100">股票发行价格</th>
 				<th width="120">当前价格</th>
-				<th width="150">操作</tr>
+			</tr>
 		</thead>
 		<tbody class="text-c" id="tabless">
 		

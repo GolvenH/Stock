@@ -57,7 +57,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<th>角色</th>
 				<th width="130">加入时间</th>
 				<th width="100">是否已启用</th>
-				<th width="100">操作</th>
 			</tr>
 		</thead>
 		<tbody>
