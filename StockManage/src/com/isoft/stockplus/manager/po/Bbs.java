@@ -22,8 +22,6 @@ public class Bbs implements java.io.Serializable
 	// Fields
 
 	private Integer bbsId;
-	private User user;
-	private StockInfo stockInfo;
 	private String bbsContent;
 	private Date bbsTime;
 
@@ -35,10 +33,8 @@ public class Bbs implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public Bbs(User user, StockInfo stockInfo, String bbsContent, Date bbsTime)
+	public Bbs( String bbsContent, Date bbsTime)
 	{
-		this.user = user;
-		this.stockInfo = stockInfo;
 		this.bbsContent = bbsContent;
 		this.bbsTime = bbsTime;
 	}
@@ -55,30 +51,6 @@ public class Bbs implements java.io.Serializable
 	public void setBbsId(Integer bbsId)
 	{
 		this.bbsId = bbsId;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	public User getUser()
-	{
-		return this.user;
-	}
-
-	public void setUser(User user)
-	{
-		this.user = user;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "stockinfo_id")
-	public StockInfo getStockInfo()
-	{
-		return this.stockInfo;
-	}
-
-	public void setStockInfo(StockInfo stockInfo)
-	{
-		this.stockInfo = stockInfo;
 	}
 
 	@Column(name = "bbs_content")

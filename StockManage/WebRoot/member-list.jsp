@@ -19,59 +19,77 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="lib/respond.min.js"></script>
 <script type="text/javascript" src="lib/PIE_IE678.js"></script>
 <![endif]-->
-<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.admin.css" />
+
 <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.7/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css" />
 <link rel="stylesheet" type="text/css" href="static/h-ui/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="static/h-ui/css/style.css" />
+<link href="easyui-1.4.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+<link href="easyui-1.4.4/themes/icon.css" rel="stylesheet" type="text/css" /> 
+<style type="text/css">
+.page-container{ padding:20px}    
+.breadcrumb{background-color:#f5f5f5; padding:0 20px}
+@media (max-width: 767px) {
+	.breadcrumb{ padding:0 15px}
+}
+.bg-1{ background-color:#f5fafe}
+h4{line-height:30px}
+.bk-gray{ border:none}
+.mt-10{margin-top:5px ;height:30px ;font-size:18px;}
+.mt-20{margin-top:0px ;height:30px ;font-size:20px;}
+.pd-5{padding:5px}.pd-10{padding:10px}.pd-15{padding:15px}.pd-20{padding:20px}.pd-30{padding:30px}.pd-40{padding:40px}
+.bk-gray{border:solid 1px #eee}
+.Hui-iconfont{position:absolute;top:9px;right:10px;line-height: 20px;cursor:pointer; color:#000; opacity:0.2;_color:#666}
+.btn-secondary{color:#fff;background-color:#3bb4f2; border-color:#3bb4f2}
+.radius{border-radius:4px}
+.text-l{text-align:left}.text-r{text-align:right}.text-c{text-align:center}
+.btn-success{color:#fff;background-color:#5eb95e; border-color:#5eb95e}
+.btn-warning{color:#fff;background-color:#f37b1d; border-color:#f37b1d}
+.btn-primary{color:#fff;background-color:#5a98de; border-color:#5a98de}
+.btn,.btn.size-M{ padding:4px 12px}
+.input-text.size-MINI,.btn.size-MINI{font-size:12px; height:23px;padding:1px 2px;line-height:1.42857}/*迷你*/
+.r,.f-r{float:right!important;_display:inline}
+.l,.f-l{float:left!important;_display:inline}
+.en{font-family:Arial!important}
+.cl:after,.clearfix:after{content:"\20";display:block;height:0;clear:both;visibility:hidden}.cl,.clearfix{zoom:1}
+
+</style>
 </head>
-<body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 用户管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
-<div class="page-container">
-	<div class="text-c">
-		<input type="text" class="input-text" style="width:250px" placeholder="输入会员名称、电话、邮箱" id="" name="">
-		<button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
-	</div>
+<body class="easyui-layout ">
+    <div region="north" border="true" split="true" style="overflow: hidden; height: 135px;">
+        <div class="top-bg">
+        
+        <nav class="breadcrumb mt-10"><i class="Hui-iconfont">&#xe67f;</i> 首页 
+        <span class="c-gray en">&gt;</span>  用户中心 <span class="c-gray en">&gt;</span> 用户管理 
+        
+        </nav>
+		<div class="page-container">
+	
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
 			<span class="l">
-		
-			
-			<a href="javascript:;" onclick="findall()" class="btn btn-success radius">
-			<i class="Hui-iconfont">&#xe601;</i>查询全部</a> 
-		
 			<a href="javascript:;" onclick="user_edit()" class="btn btn-secondary radius">
 			<i class="Hui-iconfont">&#xe603;</i>编辑用户</a> 
 			
-			<a href="javascript:;" onclick="user_delete()" class="btn btn-danger radius">
+			<a href="javascript:;" onclick="user_delete()" class="btn btn-warning radius">
 			<i class="Hui-iconfont">&#xe6e2;</i>删除用户</a> 
 			
-			<a href="javascript:;"	onclick="member_add('添加用户','member-add.jsp','','510')"class="btn btn-primary radius">
+			<a href="javascript:;"	onclick="user_add('添加用户','member-add.jsp','','510')"class="btn btn-primary radius">
 			<i class="Hui-iconfont">&#xe600;</i>添加用户</a></span> 
 			
-			<span class="r">共有数据：<strong>88</strong> 条</span>
+			<span class="r text-c"><input type="text" class="input-text" style="width:250px" placeholder="请输入股票名称或代码...." id="" name="">
+		<button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button></span>
 		</div>
-		<div class="mt-20">
-			<table
-				class="table table-border table-bordered table-hover table-bg ">
-				<thead>
-					<tr class="text-c">
-						<th width="80">ID</th>
-						<th width="100">用户名</th>
-						<th width="40">性别</th>
-						<th width="90">手机</th>
-						<th width="150">邮箱</th>
-						<th width="">地址</th>
-						<th width="130">加入时间</th>
-						<th width="70">状态</th>
-						<th width="100">操作</th>
-					</tr>
-				</thead>
-				<tbody class="text-c" id="tabless">
-				</tbody>
-			</table>
-		</div>
-	</div>
+</div>
+        </div>
+    </div>
+  
+    <div id="mainPanle" region="center" style="overflow: hidden;"class=" laydate_box laydate_box *  datagrid combo-p  datagrid * ">
+    
+       <table id="datatable" style="height:95%" >
+       </table>
+    
+    </div>
+
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script> 
@@ -79,56 +97,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="static/h-ui/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="easyui-1.4.4/jquery.easyui.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('.table-sort').dataTable({
-		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-		"bStateSave": true,//状态保存
-		"aoColumnDefs": [
-		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
-		]
-	});
-	$('.table-sort tbody').on( 'click', 'tr', function () {
-		if ( $(this).hasClass('selected') ) {
-			$(this).removeClass('selected');
-		}
-		else {
-			table.$('tr.selected').removeClass('selected');
-			$(this).addClass('selected');
-		}
-	});
+$(function($) {
+	$('#datatable').datagrid({
+				//fit:true,
+				url: 'user/findalluser.do',
+				fitColumns:true, //下面滚动条
+				nowrap:false, //显示单个单元格全显示
+				border:false, //边框
+				idField:'userId', //分页记住所勾选的
+				fitColumns:true,
+				pagination:true,
+				singleSelect:true,//是否单选 
+	 	        pageSize: 5,//每页显示的记录条数，默认为10 
+		        pageList: [5,10,15,20,30],//可以设置每页记录条数的列表 
+	 	        rownumbers:true,//行号 
+				columns:[[//多级表头 列数
+					          {field: 'userId', checkbox: true},
+							  {title:'用户名',field:'userName',width:80},	 
+							  {title:'手机号',field:'userTel',width:80},
+							  {title:'邮箱',field:'userEmail',width:100},
+							  {title:'性别',field:'userSex',width:40},
+							  {title:'账户状态',field:'userAccount',width:80},
+							  {title:'加入时间',field:'recordDate',width:80},							  {title:'账户状态',field:'userAccount',width:80},
+							  {title:'备注',field:'userHobby',width:100},
+
+
+						]]
+			});
 });
-//用户查询全部
-function findall(){
-	
-	 $.ajax({ url: "user/all.do",dataType:"json", success: function(data){		
-		 var table=  $("#tabless");
-		 var tem="";
-		  for(var i=0;i<data.length;i++){
-			  tem+=" <tr> <td>"+data[i].userId+"</td>"+
-			  "<td>"+data[i].userName+"</td>"+
-			  "<td>"+data[i].userTel+"</td> "+
-			  "<td>"+data[i].userSex+"</td>"+
-			  " <td>"+data[i].userAccount+"</td>"+
-			  " <td>"+data[i].userHobby+"</td>"+
-			  " <td>"+data[i].reocrdDate+"</td>"+
-			  " <td>"+data[i].userAccount+"</td>"+
-			  "</tr>";
-		  }
-		  table.empty();
-		  table.append(tem);
-	  }
-    }).submit();
+function user_delete(){
+  var row=$('#datatable').datagrid('getSelected');
+  alert(row.userName);
+  alert(row.userId);
+  
+
+	$.ajax({
+		url : "user/deletebyid.do?id="+row.userId,
+		dataType : "json",
+		type : "post",
+		success : alert("删除成功!"),
+		
+	});
 }
 /*用户-添加*/
-function member_add(title,url,w,h){
+function user_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
-/*用户-查看*/
-function member_show(title,url,id,w,h){
-	layer_show(title,url,w,h);
-}
-</script> 
+</script>
 </body>
 </html>

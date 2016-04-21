@@ -63,26 +63,20 @@
 					id="userSex" name="userSex">
 			</div>
 		</div>
-		<!-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span
-				class="c-red">*</span>性别：</label>
-			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
-				<div class="radio-box">
-					<input name="userSex" type="radio" id="sex-1" value="man" checked>
-					<label for="sex-1">男</label>
-				</div>
-				<div class="radio-box">
-					<input name="userSex" type="radio" id="sex-2" value="female">
-					<label for="sex-2">女</label>
-				</div>
-			</div>
-		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span
 				class="c-red">*</span>手机：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder=""
 					id="userTel" name="userTel">
+			</div>
+		</div>	
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>邮箱：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder=""
+					id="userTel" name="userEmail">
 			</div>
 		</div>
 			<div class="row cl">
@@ -93,16 +87,6 @@
 					id="userHobby" name="userHobby">
 			</div>
 		</div>
-		<!-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3">备注：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="userHobby" cols="" rows="" class="textarea"
-					placeholder="添加备注,可以为空" onKeyUp="textarealength(this,100)"></textarea>
-				<p class="textarea-numberbar">
-					<em class="textarea-length">0</em>/100
-				</p>
-			</div>
-		</div> -->
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 				<input class="btn btn-primary radius" type="submit"

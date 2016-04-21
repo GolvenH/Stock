@@ -35,4 +35,15 @@ public class StockInfoService {
 		 return map;
 		
 	}
+    public Map<String,Object> findbypage(Integer first,Integer max){
+		
+		return sidao.findByPage(first, max);
+		
+	}
+
+	public void deleteStockinfobyid(Integer id)
+	{
+		// TODO Auto-generated method stub
+		sidao.deleteById(id);
+	}
 }

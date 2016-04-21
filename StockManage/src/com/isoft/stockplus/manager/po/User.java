@@ -1,6 +1,5 @@
 package com.isoft.stockplus.manager.po;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -30,11 +29,9 @@ public class User implements java.io.Serializable
 	private String userHobby;
 	private String userSex;
 	private short userAccount;
-	private Date reocrdDate;
-	private Set<UserOpStock> userOpStocks = new HashSet<UserOpStock>(0);
-	private Set<UserInfo> userInfos = new HashSet<UserInfo>(0);
-	private Set<Bbs> bbses = new HashSet<Bbs>(0);
-
+	private String recordDate;
+	private String userEmail;
+	
 	// Constructors
 
 	/** default constructor */
@@ -42,11 +39,10 @@ public class User implements java.io.Serializable
 	{
 	}
 
-	/** full constructor */
+	/** minimal constructor */
 	public User(String userName, String userPassword, String userTel,
 			String userHobby, String userSex, short userAccount,
-			Date reocrdDate, Set<UserOpStock> userOpStocks,
-			Set<UserInfo> userInfos, Set<Bbs> bbses)
+			String recordDate, String userEmail)
 	{
 		this.userName = userName;
 		this.userPassword = userPassword;
@@ -54,11 +50,11 @@ public class User implements java.io.Serializable
 		this.userHobby = userHobby;
 		this.userSex = userSex;
 		this.userAccount = userAccount;
-		this.reocrdDate = reocrdDate;
-		this.userOpStocks = userOpStocks;
-		this.userInfos = userInfos;
-		this.bbses = bbses;
+		this.recordDate = recordDate;
+		this.userEmail = userEmail;
 	}
+
+
 
 	// Property accessors
 	@Id
@@ -74,7 +70,7 @@ public class User implements java.io.Serializable
 		this.userId = userId;
 	}
 
-	@Column(name = "user_name")
+	@Column(name = "user_name", nullable = false)
 	public String getUserName()
 	{
 		return this.userName;
@@ -85,7 +81,7 @@ public class User implements java.io.Serializable
 		this.userName = userName;
 	}
 
-	@Column(name = "user_password")
+	@Column(name = "user_password", nullable = false)
 	public String getUserPassword()
 	{
 		return this.userPassword;
@@ -96,7 +92,7 @@ public class User implements java.io.Serializable
 		this.userPassword = userPassword;
 	}
 
-	@Column(name = "user_tel")
+	@Column(name = "user_tel", nullable = false)
 	public String getUserTel()
 	{
 		return this.userTel;
@@ -107,7 +103,7 @@ public class User implements java.io.Serializable
 		this.userTel = userTel;
 	}
 
-	@Column(name = "user_hobby")
+	@Column(name = "user_hobby", nullable = false)
 	public String getUserHobby()
 	{
 		return this.userHobby;
@@ -118,7 +114,7 @@ public class User implements java.io.Serializable
 		this.userHobby = userHobby;
 	}
 
-	@Column(name = "user_sex")
+	@Column(name = "user_sex", nullable = false)
 	public String getUserSex()
 	{
 		return this.userSex;
@@ -129,7 +125,7 @@ public class User implements java.io.Serializable
 		this.userSex = userSex;
 	}
 
-	@Column(name = "user_account")
+	@Column(name = "user_account", nullable = false)
 	public short getUserAccount()
 	{
 		return this.userAccount;
@@ -140,48 +136,26 @@ public class User implements java.io.Serializable
 		this.userAccount = userAccount;
 	}
 
-	@Column(name = "reocrd_date", length = 19)
-	public Date getReocrdDate()
+	@Column(name = "record_date", nullable = false, length = 20)
+	public String getRecordDate()
 	{
-		return this.reocrdDate;
+		return this.recordDate;
 	}
 
-	public void setReocrdDate(Date reocrdDate)
+	public void setRecordDate(String recordDate)
 	{
-		this.reocrdDate = reocrdDate;
+		this.recordDate = recordDate;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<UserOpStock> getUserOpStocks()
+	@Column(name = "user_email", nullable = false)
+	public String getUserEmail()
 	{
-		return this.userOpStocks;
+		return this.userEmail;
 	}
 
-	public void setUserOpStocks(Set<UserOpStock> userOpStocks)
+	public void setUserEmail(String userEmail)
 	{
-		this.userOpStocks = userOpStocks;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<UserInfo> getUserInfos()
-	{
-		return this.userInfos;
-	}
-
-	public void setUserInfos(Set<UserInfo> userInfos)
-	{
-		this.userInfos = userInfos;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Bbs> getBbses()
-	{
-		return this.bbses;
-	}
-
-	public void setBbses(Set<Bbs> bbses)
-	{
-		this.bbses = bbses;
+		this.userEmail = userEmail;
 	}
 
 }

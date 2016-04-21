@@ -22,7 +22,6 @@ public class StockTransaction implements java.io.Serializable
 	// Fields
 
 	private Integer stocktransactionId;
-	private StockInfo stockInfo;
 	private double stocktransactionPrice;
 	private Date stocktransactionTime;
 
@@ -34,10 +33,9 @@ public class StockTransaction implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public StockTransaction(StockInfo stockInfo, double stocktransactionPrice,
+	public StockTransaction( double stocktransactionPrice,
 			Date stocktransactionTime)
 	{
-		this.stockInfo = stockInfo;
 		this.stocktransactionPrice = stocktransactionPrice;
 		this.stocktransactionTime = stocktransactionTime;
 	}
@@ -54,18 +52,6 @@ public class StockTransaction implements java.io.Serializable
 	public void setStocktransactionId(Integer stocktransactionId)
 	{
 		this.stocktransactionId = stocktransactionId;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "stockinfo_id")
-	public StockInfo getStockInfo()
-	{
-		return this.stockInfo;
-	}
-
-	public void setStockInfo(StockInfo stockInfo)
-	{
-		this.stockInfo = stockInfo;
 	}
 
 	@Column(name = "stocktransaction_price", precision = 22, scale = 0)

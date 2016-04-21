@@ -18,6 +18,7 @@ public class Site implements java.io.Serializable
 	// Fields
 
 	private Integer siteId;
+	private String about;
 	private String siteTitle;
 	private String siteContent;
 
@@ -29,8 +30,9 @@ public class Site implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public Site(String siteTitle, String siteContent)
+	public Site(String about, String siteTitle, String siteContent)
 	{
+		this.about = about;
 		this.siteTitle = siteTitle;
 		this.siteContent = siteContent;
 	}
@@ -47,6 +49,17 @@ public class Site implements java.io.Serializable
 	public void setSiteId(Integer siteId)
 	{
 		this.siteId = siteId;
+	}
+
+	@Column(name = "about")
+	public String getAbout()
+	{
+		return this.about;
+	}
+
+	public void setAbout(String about)
+	{
+		this.about = about;
 	}
 
 	@Column(name = "site_title")

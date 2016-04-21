@@ -2,8 +2,11 @@ package com.isoft.stockplus.manager.dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,17 +55,58 @@ public  abstract  class Hibernate4BaseDao<T> {
 	
 	
 	
-	public  T findById(Integer integer) {
-        return (T) openSession().get(poclazz, integer);
+	public  T findById(Integer id) {
+		
+	Session session=openSession();
+	T obj=	(T)openSession().get(poclazz, id);
+		
+	session.close();
+	
+       return  obj;
     }
 	
 	public  List<T> findAll() {
-        return openSession().createQuery("from " + poclazz.getSimpleName()).list();
+		
+	Session session=	openSession();
+	
+	List<T> list  =session.createQuery("from " + poclazz.getSimpleName()).list();
+	
+	session.close();
+	
+        return list;
     }
+	
+	public  Map<String,Object> findByPage(Integer first,Integer max) {
+		
+	
+		Map<String,Object> map=new HashMap<String, Object>();
+		
+		Session session=	openSession();
+		
+		Query query =session.createQuery("from " + poclazz.getSimpleName());
+					
+		query.setFirstResult(first); 
+		
+		query.setMaxResults(max);
+				
+	    List<T> list  = query.list();
+	    
+	    
+	   String total=  session.createQuery("select count(*)  from  "+poclazz.getSimpleName()).uniqueResult().toString();
+		
+	   map.put("rows", list);
+	   map.put("total", total);
+	   
+		session.close();
+		
+	        return map;
+	    }
+	
 	
 	
     public  void saveOrUpdate(T entity) {
-     
+		System.out.println("-============================-");
+
      Session session=openSession();
      
      session.beginTransaction();
@@ -91,11 +135,11 @@ public  abstract  class Hibernate4BaseDao<T> {
     }
 
     
-    public  void deleteById(Long entityId) {
+    public  void deleteById(Integer id) {
     	
     Session session=openSession(); 
     session.beginTransaction();
-     T entity = (T) session.get(poclazz, entityId);
+     T entity = (T) session.get(poclazz, id);
        delete(entity);
        session.getTransaction().commit();
        session.close();

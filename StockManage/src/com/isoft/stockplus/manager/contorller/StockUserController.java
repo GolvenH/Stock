@@ -1,6 +1,8 @@
 package com.isoft.stockplus.manager.contorller;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,20 +21,41 @@ public class StockUserController extends BaseController {
 
 	@Autowired
 	private StockUserService  service;
+		@RequestMapping("/findalluser.do")
+		@ResponseBody
+		public Map<String,Object> finduser(Integer page,Integer rows){
+	    	
+	    	if(page==null){
+	    		page=0;
+	    	}   	
+	    	if(rows==null||rows==0){
+	    		rows=100;
+	    	}
+			 Map<String,Object>  res= service.findbypage((page-1)*rows,rows);
+			return res;
+			
+		}
 	
-	@RequestMapping("/all.do")
-	@ResponseBody
-	public List<User>  getAllstaff(){
-		
-		return service.findall();
-		
-	}
 	@RequestMapping("/add.do")
 	@ResponseBody
-	public String addstaff(User user){
+	public String addUser(User user)
+	{
+		String now = Long.toString(new Date().getTime());
+		System.out.println(now);
+		user.setRecordDate(now);
+		Short s = 0;
+		user.setUserAccount(s);
 		
 		service.addUser(user);
-		
 		return "OK";
 	}
+
+	@RequestMapping("/deletebyid.do")
+	@ResponseBody
+		public String deletebyid(Integer id){
+			
+			service.deleteUserbyid(id);
+			return "OK";
+			
+		}
 }

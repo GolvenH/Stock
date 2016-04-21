@@ -29,13 +29,6 @@ public class StockInfo implements java.io.Serializable
 	private String stockinfoCurrent;
 	private Date stockinfoTime;
 	private double stockinfoPrice;
-	private Set<UserOpStock> userOpStocks = new HashSet<UserOpStock>(0);
-	private Set<StockTransaction> stockTransactions = new HashSet<StockTransaction>(
-			0);
-	private Set<Bbs> bbses = new HashSet<Bbs>(0);
-	private Set<UserInfo> userInfosForStockPrice = new HashSet<UserInfo>(0);
-	private Set<UserInfo> userInfosForStockName = new HashSet<UserInfo>(0);
-
 	// Constructors
 
 	/** default constructor */
@@ -45,22 +38,13 @@ public class StockInfo implements java.io.Serializable
 
 	/** full constructor */
 	public StockInfo(String stockinfoNum, String stockinfoName,
-			String stockinfoCurrent, Date stockinfoTime, double stockinfoPrice,
-			Set<UserOpStock> userOpStocks,
-			Set<StockTransaction> stockTransactions, Set<StockData> stockDatas,
-			Set<Bbs> bbses, Set<UserInfo> userInfosForStockPrice,
-			Set<UserInfo> userInfosForStockName)
+			String stockinfoCurrent, Date stockinfoTime, double stockinfoPrice)
 	{
 		this.stockinfoNum = stockinfoNum;
 		this.stockinfoName = stockinfoName;
 		this.stockinfoCurrent = stockinfoCurrent;
 		this.stockinfoTime = stockinfoTime;
 		this.stockinfoPrice = stockinfoPrice;
-		this.userOpStocks = userOpStocks;
-		this.stockTransactions = stockTransactions;
-		this.bbses = bbses;
-		this.userInfosForStockPrice = userInfosForStockPrice;
-		this.userInfosForStockName = userInfosForStockName;
 	}
 
 	// Property accessors
@@ -132,59 +116,5 @@ public class StockInfo implements java.io.Serializable
 		this.stockinfoPrice = stockinfoPrice;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockInfo")
-	public Set<UserOpStock> getUserOpStocks()
-	{
-		return this.userOpStocks;
-	}
-
-	public void setUserOpStocks(Set<UserOpStock> userOpStocks)
-	{
-		this.userOpStocks = userOpStocks;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockInfo")
-	public Set<StockTransaction> getStockTransactions()
-	{
-		return this.stockTransactions;
-	}
-
-	public void setStockTransactions(Set<StockTransaction> stockTransactions)
-	{
-		this.stockTransactions = stockTransactions;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockInfo")
-	public Set<Bbs> getBbses()
-	{
-		return this.bbses;
-	}
-
-	public void setBbses(Set<Bbs> bbses)
-	{
-		this.bbses = bbses;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockInfoByStockPrice")
-	public Set<UserInfo> getUserInfosForStockPrice()
-	{
-		return this.userInfosForStockPrice;
-	}
-
-	public void setUserInfosForStockPrice(Set<UserInfo> userInfosForStockPrice)
-	{
-		this.userInfosForStockPrice = userInfosForStockPrice;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "stockInfoByStockName")
-	public Set<UserInfo> getUserInfosForStockName()
-	{
-		return this.userInfosForStockName;
-	}
-
-	public void setUserInfosForStockName(Set<UserInfo> userInfosForStockName)
-	{
-		this.userInfosForStockName = userInfosForStockName;
-	}
 
 }

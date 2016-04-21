@@ -22,24 +22,35 @@ public class StockInfoController extends BaseController {
 
 	@Autowired
 	private StockInfoService service;
-	
-	
-	
-	@RequestMapping("/findall.do")
+
+    @RequestMapping("/findallstock.do")
 	@ResponseBody
-	public List<StockInfo> getall(){
-		
-		return service.getall();
+	public Map<String,Object> findstaff(Integer page,Integer rows){
+    	
+    	if(page==null){
+    		page=0;
+    	}
+    	if(rows==null||rows==0){
+    		rows=100;
+    	}		
+		 Map<String,Object>  res= service.findbypage((page-1)*rows,rows);
+	
+		return res;
 		
 	}
-	
 	@RequestMapping("/findbyid.do")
 	@ResponseBody
 	public Map<String,Object> getbyid(String id){
 		
 		Map<String,Object> map =service.getStockinfobyid(id);
-		
 		return map;
-		
 	}
+	@RequestMapping("/deletebyid.do")
+	@ResponseBody
+		public String deletebyid(Integer id){
+			
+			service.deleteStockinfobyid(id);
+			return "OK";
+			
+		}
 }

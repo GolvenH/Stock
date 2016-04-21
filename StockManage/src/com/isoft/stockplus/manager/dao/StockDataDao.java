@@ -15,11 +15,8 @@ public class StockDataDao extends Hibernate4BaseDao<StockData> {
 		Session session= openSession();
 		
 		List<StockData> list= session.createQuery("from StockData where stockinfoId=?").setInteger(0,id).list();
-		
 		session.close();
-		
 		return list;
-		
 	}
 
 }
