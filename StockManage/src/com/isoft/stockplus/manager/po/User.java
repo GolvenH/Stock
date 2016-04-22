@@ -1,16 +1,17 @@
 package com.isoft.stockplus.manager.po;
 
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.CascadeType;
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * User entity. @author MyEclipse Persistence Tools
@@ -29,6 +30,7 @@ public class User implements java.io.Serializable
 	private String userHobby;
 	private String userSex;
 	private short userAccount;
+/*	@JsonFormat(pattern="yyyy:mm:dd hh:mm:ss")*/	
 	private String recordDate;
 	private String userEmail;
 	

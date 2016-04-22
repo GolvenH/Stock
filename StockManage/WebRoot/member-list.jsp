@@ -121,7 +121,7 @@ $(function($) {
 							  {title:'邮箱',field:'userEmail',width:100},
 							  {title:'性别',field:'userSex',width:40},
 							  {title:'账户状态',field:'userAccount',width:80},
-							  {title:'加入时间',field:'recordDate',width:80},							  {title:'账户状态',field:'userAccount',width:80},
+							  {title:'加入时间',field:'recordDate',width:80},							  
 							  {title:'备注',field:'userHobby',width:100},
 
 

@@ -23,20 +23,12 @@ public class StockUserService {
 
 
 	}
-	
-	
-    public Map<String,Object> findbypage(Integer first,Integer max){
+	    public Map<String,Object> findbypage(Integer first,Integer max){
 		
 		return dao.findByPage(first, max);
 		
 	}
-	public List<User> findall(){
-		
-		return dao.findAll();
-		
-		
-	}
-	
+
 	public List<User> findById(){
 		return null;
 		

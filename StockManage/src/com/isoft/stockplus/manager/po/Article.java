@@ -21,13 +21,10 @@ public class Article implements java.io.Serializable
 	private Integer articleId;
 	private String articleName;
 	private String articleType;
-	private Integer articleSort;
 	private String articleKey;
 	private String articleAbst;
 	private String articleAuth;
 	private String articleSou;
-	private Date articleStTime;
-	private Date articleEnTime;
 	private String articleContent;
 
 	// Constructors
@@ -38,20 +35,16 @@ public class Article implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public Article(String articleName, String articleType, Integer articleSort,
+	public Article(String articleName, String articleType,
 			String articleKey, String articleAbst, String articleAuth,
-			String articleSou, Date articleStTime, Date articleEnTime,
-			String articleContent)
+			String articleSou,String articleContent)
 	{
 		this.articleName = articleName;
 		this.articleType = articleType;
-		this.articleSort = articleSort;
 		this.articleKey = articleKey;
 		this.articleAbst = articleAbst;
 		this.articleAuth = articleAuth;
 		this.articleSou = articleSou;
-		this.articleStTime = articleStTime;
-		this.articleEnTime = articleEnTime;
 		this.articleContent = articleContent;
 	}
 
@@ -89,17 +82,6 @@ public class Article implements java.io.Serializable
 	public void setArticleType(String articleType)
 	{
 		this.articleType = articleType;
-	}
-
-	@Column(name = "article_sort")
-	public Integer getArticleSort()
-	{
-		return this.articleSort;
-	}
-
-	public void setArticleSort(Integer articleSort)
-	{
-		this.articleSort = articleSort;
 	}
 
 	@Column(name = "article_key")
@@ -144,28 +126,6 @@ public class Article implements java.io.Serializable
 	public void setArticleSou(String articleSou)
 	{
 		this.articleSou = articleSou;
-	}
-
-	@Column(name = "article_st_time", length = 19)
-	public Date getArticleStTime()
-	{
-		return this.articleStTime;
-	}
-
-	public void setArticleStTime(Date articleStTime)
-	{
-		this.articleStTime = articleStTime;
-	}
-
-	@Column(name = "article_en_time", length = 19)
-	public Date getArticleEnTime()
-	{
-		return this.articleEnTime;
-	}
-
-	public void setArticleEnTime(Date articleEnTime)
-	{
-		this.articleEnTime = articleEnTime;
 	}
 
 	@Column(name = "article_content")

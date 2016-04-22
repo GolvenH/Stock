@@ -39,6 +39,13 @@ public  abstract  class Hibernate4BaseDao<T> {
 		
 	}
 	
+	public String getClazzName(){
+		
+		return poclazz.getSimpleName();
+		
+	}
+	
+	
 
 	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -53,6 +60,34 @@ public  abstract  class Hibernate4BaseDao<T> {
 		return sessionFactory.openSession();
 	}
 	
+	
+	
+	public void batchsave(List<T> list){
+		
+		Session session=openSession();
+		session.beginTransaction();
+		int i=0;
+	
+		for (T t : list) {
+			
+			session.save(t);
+			
+			if(i>=20){
+				session.getTransaction().commit();
+				session.flush();
+				session.clear();
+				session.beginTransaction();
+				
+				i=0;
+			}
+			i++;
+		}
+		
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
+		
+	}	
 	
 	
 	public  T findById(Integer id) {
@@ -105,8 +140,7 @@ public  abstract  class Hibernate4BaseDao<T> {
 	
 	
     public  void saveOrUpdate(T entity) {
-		System.out.println("-============================-");
-
+     
      Session session=openSession();
      
      session.beginTransaction();
