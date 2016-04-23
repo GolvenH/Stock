@@ -30,10 +30,7 @@ public class StockInfoService {
 		 Map<String, Object> map=new HashMap<String, Object>();
 		 map.put("Stock", si);
 		 map.put("StockData", sdlist);
-		 
-		 
 		 return map;
-		
 	}
     public Map<String,Object> findbypage(Integer first,Integer max){
 		

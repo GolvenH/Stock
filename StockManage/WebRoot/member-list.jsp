@@ -68,16 +68,16 @@ h4{line-height:30px}
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
 			<span class="l">
 			<a href="javascript:;" onclick="user_edit()" class="btn btn-secondary radius">
-			<i class="Hui-iconfont">&#xe603;</i>编辑用户</a> 
-			
+			<i class="Hui-iconfont">&#xe603;</i>编辑用户</a>
+
 			<a href="javascript:;" onclick="user_delete()" class="btn btn-warning radius">
 			<i class="Hui-iconfont">&#xe6e2;</i>删除用户</a> 
 			
 			<a href="javascript:;"	onclick="user_add('添加用户','member-add.jsp','','510')"class="btn btn-primary radius">
 			<i class="Hui-iconfont">&#xe600;</i>添加用户</a></span> 
 			
-			<span class="r text-c"><input type="text" class="input-text" style="width:250px" placeholder="请输入股票名称或代码...." id="" name="">
-		<button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button></span>
+			<span class="r text-c"><input type="text" class="input-text" style="width:250px ;font-size:18px" placeholder="请输入股票名称或代码...." id="" name="">
+		<button type="submit" class="btn btn-success radius" style="font-size:18px" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button></span>
 		</div>
 </div>
         </div>
@@ -145,6 +145,20 @@ function user_delete(){
 /*用户-添加*/
 function user_add(title,url,w,h){
 	layer_show(title,url,w,h);
+}
+/*用户-编辑*/
+function user_edit(){
+
+	var row=$('#datatable').datagrid('getSelected');
+
+		layer.open({
+		type: 2,
+		area: ['700px', '530px'],
+		title: '编辑用户',
+		fix: false, //不固定
+		maxmin: true,
+		content: 'member-edit.jsp?id='+row.userId +'&userName='+row.userName+'&userTel='+row.userTel+'&userHobby='+row.userHobby+'&userSex='+row.userSex+'&userEmail='+row.userEmail                                                                                        
+		}); 
 }
 </script>
 </body>

@@ -33,6 +33,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="description" content="欢乐股网站是一款由国人开发的轻量级扁平化股票自选模拟学习网站，完全免费注册，模拟炒股，在线论坛，网站现已开源">
 </head>
 <body>
+<%-- <%
+	String name=request.getParameter("name");
+%> --%> 
 <header class="navbar-wrapper">
 	<div class="navbar navbar-fixed-top">
 		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" >欢乐股后台管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" >欢乐股后台管理系统</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">v0.1</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
@@ -152,12 +155,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<iframe scrolling="yes" frameborder="0" src="welcome.jsp"></iframe>
 		</div>
 	</div>
+
 </section>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="lib/layer/2.1/layer.js"></script> 
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="static/h-ui/js/H-ui.admin.js"></script> 
 <script type="text/javascript">
+<%-- $(function($) {
+	var name=<%=name %>;
+	if(name==null)
+		{
+		 location.href = "login.jsp"
+		}
+}); --%>
 /*资讯-添加--默认全屏*/ 
 /* function article_add(title,url){
 	var index = layer.open({

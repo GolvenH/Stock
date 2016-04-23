@@ -1,5 +1,6 @@
 package com.isoft.stockplus.manager.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,19 +26,25 @@ public class StockUserService {
 	}
 	    public Map<String,Object> findbypage(Integer first,Integer max){
 		
-		return dao.findByPage(first, max);
-		
+	    	return dao.findByPage(first, max);		
 	}
-
-	public List<User> findById(){
-		return null;
-		
-//		return dao.findById(Int id);
-	}
-
 
 	public void deleteUserbyid(Integer id)
 	{
 		dao.deleteById(id);		
+	}
+
+	public Map<String, Object> getUserbyid(String id)
+	{
+		// TODO Auto-generated method stub
+		 User user= dao.findById(Integer.valueOf(id));
+		 Map<String, Object> map=new HashMap<String, Object>();
+		 map.put("User", user);
+		 return map;	}
+	
+
+	public List<User> loginUser(User user){
+			return dao.login(user);
+		
 	}
 }

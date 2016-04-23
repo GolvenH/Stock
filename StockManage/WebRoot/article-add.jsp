@@ -155,14 +155,12 @@
 					var name=articleContent;
 					var value = s1;
 					data[name] = value;
-					alert(data[articleContent]);
 					$.ajax({
 						url : "article/add.do",
 						data : data,
 						dataType : "json",
 						type : "post",
 						success : alert("添加成功!")
-						
 					});
 				}
 			});

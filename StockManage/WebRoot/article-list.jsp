@@ -126,12 +126,11 @@ $(function($) {
 });
 function user_delete(){
   var row=$('#datatable').datagrid('getSelected');
-  alert(row.userName);
-  alert(row.userId);
+  alert(row.articleId);
   
 
 	$.ajax({
-		url : "article/deletebyid.do?id="+row.userId,
+		url : "article/deletebyid.do?id="+row.articleId,
 		dataType : "json",
 		type : "post",
 		success : alert("删除成功!"),

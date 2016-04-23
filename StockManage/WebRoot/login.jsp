@@ -1,4 +1,4 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -23,50 +23,113 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="static/h-ui/css/H-ui.login.css" rel="stylesheet" type="text/css" />
 <link href="static/h-ui/css/style.css" rel="stylesheet" type="text/css" />
 <link href="lib/Hui-iconfont/1.0.7/iconfont.css" rel="stylesheet" type="text/css" />
+    <link href="static/h-ui/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/h-ui/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="static/h-ui/css/animate.min.css" rel="stylesheet">
+    <link href="static/h-ui/css/style.min.css" rel="stylesheet">
+    <link href="static/h-ui/css/login.min.css" rel="stylesheet">
 <meta name="keywords" content="欢乐股后台管理系统,欢乐股网站管理,Admain登录">
 <meta name="description" content="欢乐股网站是一款由国人开发的轻量级扁平化股票自选模拟学习网站，完全免费注册，模拟炒股，在线论坛，网站现已开源">
+
+
+
 </head>
-<body>
-<input type="hidden" id="TenantId" name="TenantId" value="" />
-<div class="header"></div>
-<div class="loginWraper">
-  <div id="loginform" class="loginBox">
-    <form class="form form-horizontal" action="index.jsp" method="post">
-      <div class="row cl">
-        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
-        <div class="formControls col-xs-8">
-          <input id="" name="" type="text" placeholder="账户" class="input-text size-L">
+
+<body class="signin">
+    <div class="signinpanel">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="signin-info">
+                    <div class="logopanel m-b">
+                        <h1>[ 欢乐股 ]</h1>
+                    </div>
+                    <div class="m-b"></div>
+                    <h4>欢迎使用 <strong>欢乐股网站 后台管理系统</strong></h4>
+                    <ul class="m-b">
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势一</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势二</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势三</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势四</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势五</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <form method="post" id="loginform">
+                    <h4 class="no-margins">登录：</h4>
+                    <p class="m-taction="" -md">登录到欢乐股网站 后台管理系统</p>
+                    <input type="text" id="userName" name="userName" class="form-control uname" placeholder="账户" >
+                    <input type="password" id="userPassword" name="userPassword" class="form-control pword m-b" placeholder="密码" >
+                    <button class="btn btn-success btn-block" onclick="ajaxsubmit()">登录</button>
+                </form>
+            </div>
         </div>
-      </div>
-      <div class="row cl">
-        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
-        <div class="formControls col-xs-8">
-          <input id="" name="" type="password" placeholder="密码" class="input-text size-L">
+        <div class="signup-footer">
+            <div class="pull-left">
+                &copy; 2015 All Rights Reserved. StockPlus.
+            </div>
         </div>
-      </div>
-      <div class="row cl">
-        <div class="formControls col-xs-8 col-xs-offset-3">
-          <input class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-          <img src="images/VerifyCode.aspx.png"> <a id="kanbuq" href="javascript:;">看不清，换一张</a> </div>
-      </div>
-      <div class="row cl">
-        <div class="formControls col-xs-8 col-xs-offset-3">
-          <label for="online">
-            <input type="checkbox" name="online" id="online" value="">
-            使我保持登录状态</label>
-        </div>
-      </div>
-      <div class="row cl">
-        <div class="formControls col-xs-8 col-xs-offset-3">
-          <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
-          <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="footer">Copyright &copy;欢乐科技有限公司</div>
+    </div>
+</body>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
-</body>
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#loginform").validate({
+		rules:{
+			userName:{
+				required:true,
+				minlength:4,
+				maxlength:16
+			},
+			userPassword:{
+				required:true,
+				minlength:6,
+				maxlength:16
+			},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function ajaxmit() {
+		
+		}
+	});
+});
+
+function ajaxsubmit() {
+
+ 	var inputs = $("input");
+	var data = {};
+	for (var i = 0; i < inputs.length; i++) {
+		var name = inputs[i].name;
+		var value = inputs[i].value;
+		data[name] = value;
+	}
+	$.ajax({
+		url : "user/login.do",
+		data : data,
+		dataType : "json",
+		type : "post",
+		success: function(data) {
+			if(data==1)
+				{
+	           	window.location.href = "index.jsp";
+				}
+			else{
+				alert("登录失败，请重试");
+
+			}
+		}
+	});
+}
+</script> 
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/login_v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:52 GMT -->
 </html>

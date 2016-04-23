@@ -12,6 +12,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.isoft.stockplus.manager.po.User;
+
 /**
  * @ProjectName:HibernateJpa
  * @Description: 
@@ -138,7 +140,9 @@ public  abstract  class Hibernate4BaseDao<T> {
 	    }
 	
 	
-	
+	public List<T> login(User user) {
+        return openSession().createSQLQuery("select * from " + poclazz.getSimpleName()+" where user_name = '"+user.getUserName()+"' and user_password = '"+user.getUserPassword()+"'").list();
+    }
     public  void saveOrUpdate(T entity) {
      
      Session session=openSession();
