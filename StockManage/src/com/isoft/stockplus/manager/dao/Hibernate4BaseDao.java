@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,181 +17,155 @@ import com.isoft.stockplus.manager.po.User;
 
 /**
  * @ProjectName:HibernateJpa
- * @Description: 
+ * @Description:
  * @Copyright: Copyright (c) 2016
  * @Company:天津市融创软通科技有限公司
  * @author: 周楠
  * @date 2016年4月16日 下午7:24:58
  */
 
-public  abstract  class Hibernate4BaseDao<T> {
-	
+public abstract class Hibernate4BaseDao<T>
+{
 	private SessionFactory sessionFactory;
-	
 	private Class<T> poclazz;
-	
-	
-	public Hibernate4BaseDao(){
-		
+	public Hibernate4BaseDao()
+	{
 		Type genericSuperclass = this.getClass().getGenericSuperclass();
-	    Type[] params = ((ParameterizedType)genericSuperclass).getActualTypeArguments();
-	    poclazz = null;
-	    if ((params.length > 0) && (params[0] != null)) {
-	    	poclazz = (Class)params[0];
-	    }
-		
+		Type[] params = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
+		poclazz = null;
+		if ((params.length > 0) && (params[0] != null))
+		{
+			poclazz = (Class) params[0];
+		}
 	}
-	
-	public String getClazzName(){
-		
+	public String getClazzName()
+	{
 		return poclazz.getSimpleName();
-		
 	}
-	
-	
-
 	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
+	public void setSessionFactory(SessionFactory sessionFactory)
+	{
 		this.sessionFactory = sessionFactory;
 	}
 
-	protected Session getCurrentSession() {
+	protected Session getCurrentSession()
+	{
 		return sessionFactory.getCurrentSession();
 	}
-	
-	protected Session openSession() {
+
+	protected Session openSession()
+	{
 		return sessionFactory.openSession();
 	}
-	
-	
-	
-	public void batchsave(List<T> list){
-		
-		Session session=openSession();
+
+	public void batchsave(List<T> list)
+	{
+		Session session = openSession();
 		session.beginTransaction();
-		int i=0;
-	
-		for (T t : list) {
-			
+		int i = 0;
+		for (T t : list)
+		{
 			session.save(t);
-			
-			if(i>=20){
+			if (i >= 20)
+			{
 				session.getTransaction().commit();
 				session.flush();
 				session.clear();
 				session.beginTransaction();
-				
-				i=0;
+
+				i = 0;
 			}
 			i++;
 		}
-		
 		session.getTransaction().commit();
 		session.flush();
 		session.close();
-		
-	}	
-	
-	
-	public  T findById(Integer id) {
-		
-	Session session=openSession();
-	T obj=	(T)openSession().get(poclazz, id);
-		
-	session.close();
-	
-       return  obj;
-    }
-	
-	public  List<T> findAll() {
-		
-	Session session=	openSession();
-	
-	List<T> list  =session.createQuery("from " + poclazz.getSimpleName()).list();
-	
-	session.close();
-	
-        return list;
-    }
-	
-	public  Map<String,Object> findByPage(Integer first,Integer max) {
-		
-	
-		Map<String,Object> map=new HashMap<String, Object>();
-		
-		Session session=	openSession();
-		
-		Query query =session.createQuery("from " + poclazz.getSimpleName());
-					
-		query.setFirstResult(first); 
-		
-		query.setMaxResults(max);
-				
-	    List<T> list  = query.list();
-	    
-	    
-	   String total=  session.createQuery("select count(*)  from  "+poclazz.getSimpleName()).uniqueResult().toString();
-		
-	   map.put("rows", list);
-	   map.put("total", total);
-	   
+	}
+	public T findById(Integer id)
+	{
+		Session session = openSession();
+		T obj = (T) openSession().get(poclazz, id);
 		session.close();
-		
-	        return map;
-	    }
-	
-	
-	public List<T> login(User user) {
-        return openSession().createSQLQuery("select * from " + poclazz.getSimpleName()+" where user_name = '"+user.getUserName()+"' and user_password = '"+user.getUserPassword()+"'").list();
-    }
-    public  void saveOrUpdate(T entity) {
-     
-     Session session=openSession();
-     
-     session.beginTransaction();
-    	
-     session.saveOrUpdate(entity);
-    	
-     session.getTransaction().commit();
-     session.close();
-    }
+		return obj;
+	}
+	public List<T> findAll()
+	{
+		Session session = openSession();
 
-    public  T update(T entity) {
-    	 Session session=openSession();
-    	 session.beginTransaction();
-    	session.update(entity);
-    	session.getTransaction().commit();
-    	   session.close();
-        return entity;
-    }
+		List<T> list = session.createQuery("from " + poclazz.getSimpleName()).list();
+		session.close();
+		return list;
+	}
 
-    public  void delete(T entity) {
-    	Session session=openSession();
-    	 session.beginTransaction();
-    	session.delete(entity);
-    	session.getTransaction().commit();
-    	   session.close();
-    }
+	public Map<String, Object> findByPage(Integer first, Integer max)
+	{
 
-    
-    public  void deleteById(Integer id) {
-    	
-    Session session=openSession(); 
-    session.beginTransaction();
-     T entity = (T) session.get(poclazz, id);
-       delete(entity);
-       session.getTransaction().commit();
-       session.close();
-    }
-    
-    public  void deleteById(String entityId) {
-    	
-        Session session=openSession(); 
-        session.beginTransaction();
-         T entity = (T) session.get(poclazz, entityId);
-           delete(entity);
-           session.getTransaction().commit();
-           session.close();
-        }
-	
+		Map<String, Object> map = new HashMap<String, Object>();
+		Session session = openSession();
+		Query query = session.createQuery("from " + poclazz.getSimpleName());
+		query.setFirstResult(first);
+		query.setMaxResults(max);
+		List<T> list = query.list();
+		String total = session.createQuery(	"select count(*)  from  " + poclazz.getSimpleName()).uniqueResult().toString();
+		map.put("rows", list);
+		map.put("total", total);
+		session.close();
+		return map;
+	}
+
+	public List<T> login(User user)
+	{
+		return openSession().createSQLQuery("select * from " + poclazz.getSimpleName()+ " where user_name = '" + user.getUserName()+ "' and user_password = '" + user.getUserPassword()	+ "'").list();
+	}
+
+	public void saveOrUpdate(T entity)
+	{
+		Session session = openSession();
+		session.beginTransaction();
+		session.saveOrUpdate(entity);
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	public T update(T entity)
+	{
+		Session session = openSession();
+		session.beginTransaction();
+		session.update(entity);
+		session.getTransaction().commit();
+		session.close();
+		return entity;
+	}
+
+	public void delete(T entity)
+	{
+		Session session = openSession();
+		session.beginTransaction();
+		session.delete(entity);
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	public void deleteById(Integer id)
+	{
+
+		Session session = openSession();
+		session.beginTransaction();
+		T entity = (T) session.get(poclazz, id);
+		delete(entity);
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	public void deleteById(String entityId)
+	{
+
+		Session session = openSession();
+		session.beginTransaction();
+		T entity = (T) session.get(poclazz, entityId);
+		delete(entity);
+		session.getTransaction().commit();
+		session.close();
+	}
+
 }

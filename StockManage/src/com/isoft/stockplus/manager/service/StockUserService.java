@@ -47,4 +47,19 @@ public class StockUserService {
 			return dao.login(user);
 		
 	}
+
+	
+	public void updateUser(User user){
+		
+		dao.update(user);
+
+		System.out.println("se");
+
+
+	}
+
+	public List<User> login(User user){
+		return dao.login(user);
+		   
+	   }
 }

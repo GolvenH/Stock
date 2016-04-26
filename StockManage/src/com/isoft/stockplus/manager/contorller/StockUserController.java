@@ -17,11 +17,12 @@ import com.isoft.stockplus.manager.service.StockUserService;
 import com.isoft91.common.base.controller.BaseController;
 
 
-
 @RequestMapping("/user")
 @Controller
 public class StockUserController extends BaseController {
 
+	private ModelAndView mav;
+	
 	@Autowired
 	private StockUserService  service;
 		@RequestMapping("/findalluser.do")
@@ -51,6 +52,17 @@ public class StockUserController extends BaseController {
 		service.addUser(user);
 		return "OK";
 	}
+	
+	@RequestMapping("/update.do")
+	@ResponseBody
+	public String updateUser(User user)
+	{
+		String now = Long.toString(new Date().getTime());
+		user.setRecordDate(now);
+
+		service.updateUser(user);
+		return "OK";
+	}
 
 	@RequestMapping("/deletebyid.do")
 	@ResponseBody
@@ -63,37 +75,23 @@ public class StockUserController extends BaseController {
 	@ResponseBody
 	public Map<String,Object> getbyid(String id){
 		
+		System.out.println("=========="+id+"==========================");
 		Map<String,Object> map =service.getUserbyid(id);
 		return map;
 	}
 	
-	@RequestMapping("/login.do")
-	@ResponseBody
-	public int login(User user,HttpSession session){
-		if(service.loginUser(user).size()>0)
+
+	@RequestMapping("/lo.do")
+	public String login(User user){
+		if(service.login(user).size()>0)
 		{
-			session.setAttribute("user", "ture");
-				return 1;
+			return   "redirect:/index.jsp";
 		}
 			else
 		{
-				return 0;
-			
+			return "redirect:/login.jsp";
 		}
+
 	}
-	@RequestMapping("/userlogin.do")
-	@ResponseBody
-	public ModelAndView login(User user){
-		if(service.loginUser(user).size()>0)
-			{
-			ModelAndView mav = new ModelAndView("/index.jsp");
-			mav.addObject("username",user.getUserName());
-			mav.addObject("password", user.getUserPassword());
-				
-			return mav;
-				}
-			else
-				return new ModelAndView("/login.jsp");
-			
-		}
+	
 }

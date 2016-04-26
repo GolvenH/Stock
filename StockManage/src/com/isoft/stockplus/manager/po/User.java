@@ -42,10 +42,11 @@ public class User implements java.io.Serializable
 	}
 
 	/** minimal constructor */
-	public User(String userName, String userPassword, String userTel,
+	public User( Integer userId ,String userName, String userPassword, String userTel,
 			String userHobby, String userSex, short userAccount,
 			String recordDate, String userEmail)
 	{
+		this.userId=userId;
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.userTel = userTel;
@@ -61,7 +62,7 @@ public class User implements java.io.Serializable
 	// Property accessors
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "user_id", unique = true, nullable = false)
+	@Column(name = "user_id", unique = true)
 	public Integer getUserId()
 	{
 		return this.userId;
@@ -72,7 +73,7 @@ public class User implements java.io.Serializable
 		this.userId = userId;
 	}
 
-	@Column(name = "user_name", nullable = false)
+	@Column(name = "user_name")
 	public String getUserName()
 	{
 		return this.userName;
@@ -83,7 +84,7 @@ public class User implements java.io.Serializable
 		this.userName = userName;
 	}
 
-	@Column(name = "user_password", nullable = false)
+	@Column(name = "user_password")
 	public String getUserPassword()
 	{
 		return this.userPassword;
@@ -94,7 +95,7 @@ public class User implements java.io.Serializable
 		this.userPassword = userPassword;
 	}
 
-	@Column(name = "user_tel", nullable = false)
+	@Column(name = "user_tel")
 	public String getUserTel()
 	{
 		return this.userTel;
@@ -105,7 +106,7 @@ public class User implements java.io.Serializable
 		this.userTel = userTel;
 	}
 
-	@Column(name = "user_hobby", nullable = false)
+	@Column(name = "user_hobby")
 	public String getUserHobby()
 	{
 		return this.userHobby;
@@ -116,7 +117,7 @@ public class User implements java.io.Serializable
 		this.userHobby = userHobby;
 	}
 
-	@Column(name = "user_sex", nullable = false)
+	@Column(name = "user_sex")
 	public String getUserSex()
 	{
 		return this.userSex;
@@ -127,7 +128,7 @@ public class User implements java.io.Serializable
 		this.userSex = userSex;
 	}
 
-	@Column(name = "user_account", nullable = false)
+	@Column(name = "user_account")
 	public short getUserAccount()
 	{
 		return this.userAccount;
@@ -138,7 +139,7 @@ public class User implements java.io.Serializable
 		this.userAccount = userAccount;
 	}
 
-	@Column(name = "record_date", nullable = false, length = 20)
+	@Column(name = "record_date", length = 20)
 	public String getRecordDate()
 	{
 		return this.recordDate;
@@ -149,7 +150,7 @@ public class User implements java.io.Serializable
 		this.recordDate = recordDate;
 	}
 
-	@Column(name = "user_email", nullable = false)
+	@Column(name = "user_email")
 	public String getUserEmail()
 	{
 		return this.userEmail;

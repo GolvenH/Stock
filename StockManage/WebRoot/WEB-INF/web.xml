@@ -4,15 +4,6 @@ xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
  version="2.5">
 
-<!--   <filter>
-    <filter-name>filterlog</filter-name>
-    <filter-class>com.isoft91.common.base.utilities.LoginFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>filterlog</filter-name>
-    <url-pattern>/main.html</url-pattern>
-  </filter-mapping> -->
-	
 	
   <context-param>
     <param-name>contextConfigLocation</param-name>
@@ -42,6 +33,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     <servlet-name>springservlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
   
   
     <welcome-file-list>

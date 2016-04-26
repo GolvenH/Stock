@@ -6,10 +6,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<head>
+  <head>
     <base href="<%=basePath%>">
     
-    <title>意见反馈</title>
+    <title>评论列表</title>
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -19,152 +19,121 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="lib/respond.min.js"></script>
 <script type="text/javascript" src="lib/PIE_IE678.js"></script>
 <![endif]-->
-<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.7/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css" />
 <link rel="stylesheet" type="text/css" href="static/h-ui/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="static/h-ui/css/style.css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
+<link href="easyui-1.4.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+<link href="easyui-1.4.4/themes/icon.css" rel="stylesheet" type="text/css" /> 
+<style type="text/css">
+.page-container{ padding:20px}    
+.breadcrumb{background-color:#f5f5f5; padding:0 20px}
+@media (max-width: 767px) {
+	.breadcrumb{ padding:0 15px}
+}
+.bg-1{ background-color:#f5fafe}
+h4{line-height:30px}
+.bk-gray{ border:none}
+.mt-10{margin-top:5px ;height:30px ;font-size:18px;}
+.mt-20{margin-top:0px ;height:30px ;font-size:20px;}
+.pd-5{padding:5px}.pd-10{padding:10px}.pd-15{padding:15px}.pd-20{padding:20px}.pd-30{padding:30px}.pd-40{padding:40px}
+.bk-gray{border:solid 1px #eee}
+.Hui-iconfont{position:absolute;top:9px;right:10px;line-height: 20px;cursor:pointer; color:#000; opacity:0.2;_color:#666}
+.btn-secondary{color:#fff;background-color:#3bb4f2; border-color:#3bb4f2}
+.radius{border-radius:4px}
+.text-l{text-align:left}.text-r{text-align:right}.text-c{text-align:center}
+.btn-success{color:#fff;background-color:#5eb95e; border-color:#5eb95e}
+.btn-warning{color:#fff;background-color:#f37b1d; border-color:#f37b1d}
+.btn-primary{color:#fff;background-color:#5a98de; border-color:#5a98de}
+.btn,.btn.size-M{ padding:4px 12px}
+.input-text.size-MINI,.btn.size-MINI{font-size:12px; height:23px;padding:1px 2px;line-height:1.42857}/*迷你*/
+.r,.f-r{float:right!important;_display:inline}
+.l,.f-l{float:left!important;_display:inline}
+.en{font-family:Arial!important}
+.cl:after,.clearfix:after{content:"\20";display:block;height:0;clear:both;visibility:hidden}.cl,.clearfix{zoom:1}
+
+</style>
 </head>
-<body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 评论管理 <span class="c-gray en">&gt;</span> 意见反馈 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<body class="easyui-layout ">
+    <div region="north" border="true" split="true" style="overflow: hidden; height: 135px;">
+        <div class="top-bg">
+        
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 评论管理 <span class="c-gray en">&gt;</span> 评论列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="text-c"> 日期范围：
-		<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
-		-
-		<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
-		<input type="text" class="input-text" style="width:250px" placeholder="输入关键词" id="" name="">
-		<button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜意见</button>
-	</div>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> </span> <span class="r">共有数据：<strong>88</strong> 条</span> </div>
-	<div class="mt-20">
-		<table class="table table-border table-bordered table-hover table-bg table-sort">
-			<thead>
-				<tr class="text-c">
-					<th width="25"><input type="checkbox" name="" value=""></th>
-					<th width="60">ID</th>
-					<th width="60">用户名</th>
-					<th>留言内容</th>
-					<th width="100">操作</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="text-c">
-					<td><input type="checkbox" value="1" name=""></td>
-					<td>1</td>
-					<td><a href="javascript:;" onclick="member_show('张三','member-show.html','10001','360','400')"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/avatar-default-S.gif"></i></a></td>
-					<td class="text-l"><div class="c-999 f-12">
-							<u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','360','400')">张三</u> <time title="2014年8月31日 下午3:20" datetime="2014-08-31T03:54:20">2014-8-31 15:20</time> <span class="ml-20">13000000000</span> <span class="ml-20">admin@mail.com</span></div>
-							<div class="f-12 c-999"><a href="http://www.h-ui.net/Hui-4.22-comment.shtml" target="_blank">http://www.h-ui.net/Hui-4.22-comment.shtml</a></div>
-						<div>留言内容</div></td>
-					<td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td><input type="checkbox" value="1" name=""></td>
-					<td>1</td>
-					<td><a href="javascript:;" onclick="member_show('张三','member-show.html','10001','360','400')"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/avatar-default-S.gif"></i></a></td>
-					<td class="text-l"><div class="c-999 f-12">
-							<u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','360','400')">张三</u> <time title="2014年8月31日 下午3:20" datetime="2014-08-31T03:54:20">2014-8-31 15:20</time> <span class="ml-20">13000000000</span> <span class="ml-20">admin@mail.com</span></div>
-							<div class="f-12 c-999"><a href="http://www.h-ui.net/Hui-4.22-comment.shtml" target="_blank">http://www.h-ui.net/Hui-4.22-comment.shtml</a></div>
-						<div>留言内容</div></td>
-					<td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td><input type="checkbox" value="1" name=""></td>
-					<td>1</td>
-					<td><a href="javascript:;" onclick="member_show('张三','member-show.html','10001','360','400')"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/avatar-default-S.gif"></i></a></td>
-					<td class="text-l"><div class="c-999 f-12">
-							<u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','360','400')">张三</u> <time title="2014年8月31日 下午3:20" datetime="2014-08-31T03:54:20">2014-8-31 15:20</time> <span class="ml-20">13000000000</span> <span class="ml-20">admin@mail.com</span></div>
-							<div class="f-12 c-999"><a href="http://www.h-ui.net/Hui-4.22-comment.shtml" target="_blank">http://www.h-ui.net/Hui-4.22-comment.shtml</a></div>
-						<div>留言内容</div></td>
-					<td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td><input type="checkbox" value="1" name=""></td>
-					<td>1</td>
-					<td><a href="javascript:;" onclick="member_show('张三','member-show.html','10001','360','400')"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/avatar-default-S.gif"></i></a></td>
-					<td class="text-l"><div class="c-999 f-12">
-							<u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','360','400')">张三</u> <time title="2014年8月31日 下午3:20" datetime="2014-08-31T03:54:20">2014-8-31 15:20</time> <span class="ml-20">13000000000</span> <span class="ml-20">admin@mail.com</span></div>
-							<div class="f-12 c-999"><a href="http://www.h-ui.net/Hui-4.22-comment.shtml" target="_blank">http://www.h-ui.net/Hui-4.22-comment.shtml</a></div>
-						<div>留言内容</div></td>
-					<td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+	
+		<div class="cl pd-5 bg-1 bk-gray mt-20">
+			<span class="l">
+			<a href="javascript:;" onclick="user_delete()" class="btn btn-warning radius">
+			<i class="Hui-iconfont">&#xe6e2;</i>删除评论</a> 
+
+			<span class="r text-c"><input type="text" class="input-text" style="width:250px; font-size:20px" placeholder="请输入名称...." id="" name="">
+		<button type="submit" class="btn btn-success radius" style="font-size:20px" name=""><i class="Hui-iconfont">&#xe665;</i> 搜评论</button></span>
+		</div>
 </div>
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
-<script type="text/javascript" src="lib/layer/2.1/layer.js"></script> 
+        </div>
+    </div>
+  
+    <div id="mainPanle" region="center" style="overflow: hidden;"class=" laydate_box laydate_box *  datagrid combo-p  datagrid * ">
+    
+       <table id="datatable" style="height:95%" >
+       </table>
+    
+    </div>
+<<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script> 
 <script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script> 
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="static/h-ui/js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="easyui-1.4.4/jquery.easyui.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('.table-sort').dataTable({
-		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-		"bStateSave": true,//状态保存
-		"aoColumnDefs": [
-		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,2,4]}// 制定列不参与排序
-		]
-	});
-	$('.table-sort tbody').on( 'click', 'tr', function () {
-		if ( $(this).hasClass('selected') ) {
-			$(this).removeClass('selected');
-		}
-		else {
-			table.$('tr.selected').removeClass('selected');
-			$(this).addClass('selected');
-		}
-	});
-});
-/*用户-添加*/
-function member_add(title,url,w,h){
-	layer_show(title,url,w,h);
-}
-/*用户-查看*/
-function member_show(title,url,id,w,h){
-	layer_show(title,url,w,h);
-}
-/*用户-停用*/
-function member_stop(obj,id){
-	layer.confirm('确认要停用吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe6e1;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
-		$(obj).remove();
-		layer.msg('已停用!',{icon: 5,time:1000});
-	});
-}
+$(function($) {
+	$('#datatable').datagrid({
+				//fit:true,
+				url: 'article/findalluser.do',
+				fitColumns:true, //下面滚动条
+				nowrap:false, //显示单个单元格全显示
+				border:false, //边框
+				idField:'articleId', //分页记住所勾选的
+				fitColumns:true,
+				pagination:true,
+				singleSelect:true,//是否单选 
+	 	        pageSize: 5,//每页显示的记录条数，默认为10 
+		        pageList: [5,10,15,20,30],//可以设置每页记录条数的列表 
+	 	        rownumbers:true,//行号 
+				columns:[[//多级表头 列数
+					          {field: 'articleId', checkbox: true},
+					          {title:'文章标题',field:'articleName',width:80},	 
+							  {title:'简略标题',field:'articleType',width:80},
+							  {title:'关键词',field:'articleKey',width:100},
+							  {title:'文章摘要',field:'articleAbst',width:40},
+							  {title:'作者',field:'articleAuth',width:80},
+							  {title:'xxxx',field:'articleSou',width:80},					
+							  {title:'文章内容<',field:'articleContent',width:100},
 
-/*用户-启用*/
-function member_start(obj,id){
-	layer.confirm('确认要启用吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-		$(obj).remove();
-		layer.msg('已启用!',{icon: 6,time:1000});
+
+
+						]]
+			});
+});
+function user_delete(){
+  var row=$('#datatable').datagrid('getSelected');
+  alert(row.articleId);
+  
+
+	$.ajax({
+		url : "bbs/deletebyid.do?id="+row.articleId,
+		dataType : "json",
+		type : "post",
+		success : alert("删除成功!"),
+		
 	});
 }
-/*用户-编辑*/
-function member_edit(title,url,id,w,h){
+/*用户-添加*/
+function user_add(title,url,w,h){
 	layer_show(title,url,w,h);
-}
-/*密码-修改*/
-function change_password(title,url,id,w,h){
-	layer_show(title,url,w,h);	
-}
-/*用户-删除*/
-function member_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		$(obj).parents("tr").remove();
-		layer.msg('已删除!',{icon:1,time:1000});
-	});
 }
 </script>
 </body>

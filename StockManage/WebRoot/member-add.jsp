@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</form>
 </article>
-
+<button onclick="test1()">11</button>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="lib/layer/2.1/layer.js"></script> 
 <script type="text/javascript" src="lib/icheck/jquery.icheck.min.js"></script> 
@@ -140,7 +140,7 @@ $(function(){
 			var value = s1;
 			data[name] = value;
 
-			var s2 = $("#userHobby").text();
+			var s2 = $("#userHobby").val();
 			var name = userHobby;
 			var value = s2;
 			data[name] = value;
@@ -151,12 +151,22 @@ $(function(){
 				data : data,
 				dataType : "json",
 				type : "post",
-				success : alert("添加成功!"),
+				success : function(data){
+					
+					alert("添加成功!");
+				}
+					
 				
 			});
 		}
 	});
 });
+
+function test1() {
+	var id=1;
+
+	alert(id);
+}
 </script> 
 </body>
 </html>

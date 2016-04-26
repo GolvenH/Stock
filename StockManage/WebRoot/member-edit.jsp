@@ -27,8 +27,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <article class="page-container">
-	<form action="user/add.do" method="post" class="form form-horizontal"
-		id="form-member-add">		<div class="row cl">
+	<form action="user/update.do" method="get" class="form form-horizontal"	id="form-member-add">
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="" id="userName" name="userName">
@@ -60,30 +60,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">备注：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea id="userHobby"  name="userHobby" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" onKeyUp="textarealength(this,100)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+				<input type="text" class="input-text" value="" placeholder="" id="userHobby" name="userHobby">
 			</div>
-		</div>
-	
-		<div class="row cl">
-			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<input class="btn btn-primary radius" type="submit"	value="&nbsp;&nbsp;提交&nbsp;&nbsp;" onclick="ajaxsubmit()">
-			</div>
-		</div>
-		
-	</form>	
-
+		</div>  
+	</form>
 </article>
-	
+<article class="page-container">
+	<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button  class="btn btn-primary radius" id="submit"  onclick="submit()">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+			
+				<button  class="btn btn-primary radius" id="getuserinfo" >&nbsp;&nbsp;获取原数据&nbsp;&nbsp; </button>
+			</div>
+		</div>    
+</article>
 <%
-String id=request.getParameter("id");
-String uname=request.getParameter("userName");
-String utel=request.getParameter("userTel");
-String uem=request.getParameter("userEmail");
-String usex=request.getParameter("userSex");
-String ubz=request.getParameter("userHobby");
+String usid=request.getParameter("id");
 %>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="lib/layer/2.1/layer.js"></script> 
@@ -95,23 +89,10 @@ String ubz=request.getParameter("userHobby");
 <script type="text/javascript" src="static/h-ui/js/H-ui.admin.js"></script> 
 
 <script type="text/javascript">
+var uid;
+var upd;
+var uac;
 
-function test() {
-	var id=<%=id %>;
-	var uname=<%=uname %>;
-	var utel=<%=utel %>;
-	var uem=<%=uem %>;
-	var usex=<%=usex %>;
-	var ubz=<%=ubz %>;
-	alert(id+"  "+uname+" "+uem+" "+utel+" "+usex+" "+ubz);
-
-	$("#userName").attr("value",uname); 
-	$("#userName").attr("value","1");
-	if(usex=="man")
-		{
-			$("input[@type=radio]").attr("checked",'2');
-		}
-}
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
@@ -147,16 +128,74 @@ $(function(){
 		onkeyup:false,
 		focusCleanup:true,
 		success:"valid",
-		submitHandler:function ajaxsubmit() {
-		
+		submitHandler:$('#submit').click(function() 
+		{
+			var inputs = $("input");
+			var data = {};
+			for (var i = 0; i < inputs.length; i++) 
+			{
+				var name = inputs[i].name;
+				var value = inputs[i].value;
+				data[name] = value;
+			}
+				var s1 = $('input:radio[name=userSex]:checked').val();
+				var name = "userSex";
+				var value = s1;
+				data[name] = value;
 
-
+				var b_uid=uid;
+				var name = "userId";
+				var value = b_uid;
+				data[name] = value;
+				
+				var b_upd=upd;
+				var name = "userPassword";
+				var value = b_upd;
+				data[name] = value;
+				
+				var b_uac=uac;
+				var name = "userAccount";
+				var value = b_uac;
+				data[name] = value;
+			$.ajax({
+				url : "user/update.do",
+				data : data,
+				dataType : "json",
+				type : "get",
+				success :function(data) 
+				{
+					alert("添加成功!");
+				}
+			});
+		})
+	});
+});
+	
+$('#getuserinfo').click(function(){
+	var id=<%=usid %>;
+	$.ajax({
+		url : "user/findbyid.do?id="+id,
+		dataType : "json",
+		type : "post",
+		success :function(data) 
+		{
+			var a_uid = data.User.userId;
+			var a_uname = data.User.userName;
+			var a_uem = data.User.userEmail;
+			var a_utel = data.User.userTel;
+			var a_ubz = data.User.userHobby;
+			var a_upd = data.User.userPassword;
+			var a_uac = data.User.userAccount;
+			$("#userName").attr("value",a_uname);
+			$("#userEmail").attr("value",a_uem);
+			$("#userTel").attr("value",a_utel);
+			$("#userHobby").attr("value",a_ubz);
+			uid = a_uid;
+			upd = a_upd;
+			uac = a_uac;
 		}
 	});
 });
-
-
-
 </script> 
 </body>
 </html>

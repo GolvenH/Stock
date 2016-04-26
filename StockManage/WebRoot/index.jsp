@@ -38,7 +38,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %> --%> 
 <header class="navbar-wrapper">
 	<div class="navbar navbar-fixed-top">
-		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" >欢乐股后台管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" >欢乐股后台管理系统</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">v0.1</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+		<div class="container-fluid cl"> 
+		
+		<a class="logo navbar-logo hidden-xs">
+		<img src="static/logo.png" width="100" height="40" /></a>
+		
+		<a class="logo navbar-logo f-l mr-10 hidden-xs" >欢乐股后台管理系统</a> 
+		<a class="logo navbar-logo-m f-l mr-10 visible-xs" >欢乐股后台管理系统</a> 
+		<a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
 			<nav class="nav navbar-nav">
 				<ul class="cl">
 					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
@@ -88,18 +95,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="http://h-ui.duoshuo.com/admin/" data-title="评论列表" href="javascript:;">评论列表</a></li>
-					<li><a _href="feedback-list.jsp" data-title="意见反馈" href="javascript:void(0)">意见反馈</a></li>
+					<li><a href="feedback-list.jsp" data-title="评论列表" href="javascript:void(0)">评论列表</a></li>
 				</ul>
 			</dd>
 		</dl>
 		<dl id="menu-member">
-			<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe60d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="member-list.jsp" data-title="会员列表" href="javascript:;">会员列表</a></li>
-					<li><a _href="member-del.jsp" data-title="删除的会员" href="javascript:;">删除的会员</a></li>
-					<li><a _href="member-record-browse.jsp" data-title="浏览记录" href="javascript:void(0)">浏览记录</a></li>
+					<li><a _href="member-list.jsp" data-title="会员列表" href="javascript:;">用户列表</a></li>
+					<li><a _href="member-record-browse.jsp" data-title="浏览记录" href="javascript:void(0)">用户自选股</a></li>
 					<li><a _href="member-record-download.jsp" data-title="下载记录" href="javascript:void(0)">下载记录</a></li>
 					<li><a _href="member-record-share.jsp" data-title="分享记录" href="javascript:void(0)">分享记录</a></li>
 				</ul>
