@@ -13,6 +13,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.isoft.stockplus.manager.po.Admin;
 import com.isoft.stockplus.manager.po.User;
 
 /**
@@ -113,10 +114,12 @@ public abstract class Hibernate4BaseDao<T>
 		return map;
 	}
 
-	public List<T> login(User user)
+	public List<T> login(Admin admin)
 	{
-		return openSession().createSQLQuery("select * from " + poclazz.getSimpleName()+ " where user_name = '" + user.getUserName()+ "' and user_password = '" + user.getUserPassword()	+ "'").list();
+		return openSession().createSQLQuery("select * from " + poclazz.getSimpleName()+ " where admin_name = '" + admin.getAdminName()+ "' and admin_password = '" + admin.getAdminPassword()	+ "'").list();
 	}
+	
+	
 
 	public void saveOrUpdate(T entity)
 	{

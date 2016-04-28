@@ -45,6 +45,7 @@ h4{line-height:30px}
 .text-l{text-align:left}.text-r{text-align:right}.text-c{text-align:center}
 .btn-success{color:#fff;background-color:#5eb95e; border-color:#5eb95e}
 .btn-warning{color:#fff;background-color:#f37b1d; border-color:#f37b1d}
+.btn-secondary{color:#fff;background-color:#3bb4f2;border-color:#3bb4f2}
 .btn-primary{color:#fff;background-color:#5a98de; border-color:#5a98de}
 .btn,.btn.size-M{ padding:4px 12px}
 .input-text.size-MINI,.btn.size-MINI{font-size:12px; height:23px;padding:1px 2px;line-height:1.42857}/*迷你*/
@@ -72,9 +73,12 @@ h4{line-height:30px}
 
 			<a href="javascript:;" onclick="user_delete()" class="btn btn-warning radius">
 			<i class="Hui-iconfont">&#xe6e2;</i>删除用户</a> 
-			
+<!-- 			
 			<a href="javascript:;"	onclick="user_add('添加用户','member-add.jsp','','510')"class="btn btn-primary radius">
-			<i class="Hui-iconfont">&#xe600;</i>添加用户</a></span> 
+			<i class="Hui-iconfont">&#xe600;</i>添加用户</a>
+		 -->
+			<a href="javascript:;"	onclick="user_show()" class="btn btn-secondary radius">
+			<i class="Hui-iconfont">&#xe601;</i>查看用户自选股</a></span> 
 			
 			<span class="r text-c"><input type="text" class="input-text" style="width:250px ;font-size:18px" placeholder="请输入股票名称或代码...." id="" name="">
 		<button " class="btn btn-success radius" style="font-size:18px" id="" name=""> 搜用户</button></span>
@@ -142,10 +146,10 @@ function user_delete(){
 		
 	});
 }
-/*用户-添加*/
+/*用户-添加/
 function user_add(title,url,w,h){
 	layer_show(title,url,w,h);
-}
+}*
 /*用户-编辑*/
 function user_edit(){
 
@@ -156,7 +160,20 @@ function user_edit(){
 		title: '编辑用户',
 		fix: false, //不固定
 		maxmin: true,
-		content: 'member-edit.jsp?id='+row.userId +'&name='+row.userName+'&tel='+row.userTel+'&beiz='+row.userHobby+'&sex='+row.userSex+'&email='+row.userEmail+'&passwd='+row.userPassword+'&acc='+row.userAccount                                                                                        
+		content: 'member-edit.jsp?id='+row.userId
+		}); 
+}
+/*用户-自选股查看*/
+function user_show(){
+
+	var row=$('#datatable').datagrid('getSelected');
+		layer.open({
+		type: 2,
+		area: ['700px', '530px'],
+		title: '用户自选股',
+		fix: false, //不固定
+		maxmin: true,
+		content: 'member-show.jsp?id='+row.userId
 		}); 
 }
 </script>

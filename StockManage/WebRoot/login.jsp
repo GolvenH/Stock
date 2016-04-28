@@ -26,8 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="static/h-ui/css/login.min.css" rel="stylesheet">
 <meta name="keywords" content="欢乐股后台管理系统,欢乐股网站管理,Admain登录">
 <meta name="description" content="欢乐股网站是一款由国人开发的轻量级扁平化股票自选模拟学习网站，完全免费注册，模拟炒股，在线论坛，网站现已开源">
-
-
+<link rel="shortcut icon" href="favicon.ico"> 
 
 </head>
 
@@ -51,11 +50,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
             </div>
             <div class="col-sm-5">
-                <form id="loginform" action="user/lo.do" method="post">
+                <form id="loginform" action="admin/lo.do" method="post">
                     <h4 class="no-margins">登录：</h4>
                     <p class="m-taction">登录到欢乐股网站 后台管理系统</p>
-                    <input type="text" id="userName" name="userName" class="form-control uname" placeholder="账户" >
-                    <input type="password" id="userPassword" name="userPassword" class="form-control pword m-b" placeholder="密码" >
+                    <input type="text" id="adminName" name="adminName" class="form-control uname" placeholder="账户" >
+                    <input type="password" id="adminPassword" name="adminPassword" class="form-control pword m-b" placeholder="密码" >
                     <input value="登录" class="btn btn-success btn-block"  type="submit">
                 </form>
             </div>
@@ -68,34 +67,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
-<!-- <script type="text/javascript">
-function ajaxsubmit() {
-
- 	var inputs = $("input");
-	var data = {};
-	for (var i = 0; i < inputs.length; i++)
-	{
-		var name = inputs[i].name;
-		var value = inputs[i].value;
-		data[name] = value;
-	}
-	$.ajax({
-		url : "user/login.do",
-		data : data,
-		dataType : "json",
-		type : "post",
-		success: function(data)
-		{
-			if(data.equals(1))
-				{
-	        	   	window.location.href = "index.jsp";
-				}
-			else{
-				alert("登录失败，请重试");
-			}
-		}
-	});
-}
-</script>  -->
 </body>
 </html>

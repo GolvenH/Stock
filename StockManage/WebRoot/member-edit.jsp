@@ -70,9 +70,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <article class="page-container">
 	<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button  class="btn btn-primary radius" id="submit"  onclick="submit()">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+				<button  class="btn btn-primary radius" id="submit"  onclick="submit()">&nbsp;&nbsp;提交更新&nbsp;&nbsp;</button>
 			
-				<button  class="btn btn-primary radius" id="getuserinfo" >&nbsp;&nbsp;获取原数据&nbsp;&nbsp; </button>
 			</div>
 		</div>    
 </article>
@@ -94,6 +93,32 @@ var upd;
 var uac;
 
 $(function(){
+	
+	
+	var id=<%=usid %>;
+	$.ajax({
+		url : "user/findbyid.do?id="+id,
+		dataType : "json",
+		type : "post",
+		success :function(data) 
+		{
+			var a_uid = data.User.userId;
+			var a_uname = data.User.userName;
+			var a_uem = data.User.userEmail;
+			var a_utel = data.User.userTel;
+			var a_ubz = data.User.userHobby;
+			var a_upd = data.User.userPassword;
+			var a_uac = data.User.userAccount;
+			$("#userName").attr("value",a_uname);
+			$("#userEmail").attr("value",a_uem);
+			$("#userTel").attr("value",a_utel);
+			$("#userHobby").attr("value",a_ubz);
+			uid = a_uid;
+			upd = a_upd;
+			uac = a_uac;
+		}
+	});
+	
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
@@ -161,41 +186,13 @@ $(function(){
 				url : "user/update.do",
 				data : data,
 				dataType : "json",
-				type : "get",
-				success :function(data) 
-				{
-					alert("添加成功!");
-				}
+				type : "post",
+				success :alert("更新成功!")
 			});
 		})
 	});
 });
-	
-$('#getuserinfo').click(function(){
-	var id=<%=usid %>;
-	$.ajax({
-		url : "user/findbyid.do?id="+id,
-		dataType : "json",
-		type : "post",
-		success :function(data) 
-		{
-			var a_uid = data.User.userId;
-			var a_uname = data.User.userName;
-			var a_uem = data.User.userEmail;
-			var a_utel = data.User.userTel;
-			var a_ubz = data.User.userHobby;
-			var a_upd = data.User.userPassword;
-			var a_uac = data.User.userAccount;
-			$("#userName").attr("value",a_uname);
-			$("#userEmail").attr("value",a_uem);
-			$("#userTel").attr("value",a_utel);
-			$("#userHobby").attr("value",a_ubz);
-			uid = a_uid;
-			upd = a_upd;
-			uac = a_uac;
-		}
-	});
-});
+
 </script> 
 </body>
 </html>

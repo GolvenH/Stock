@@ -59,7 +59,12 @@
 			<generator class="identity"></generator>
 		</primary-key>
 	</table>
-<table name="stock_transaction" catalog="stockplus">
+	<table name="stock_transaction" catalog="stockplus">
+		<primary-key>
+			<generator class="identity"></generator>
+		</primary-key>
+	</table>
+<table name="admin" catalog="stockplus">
 	<primary-key>
 		<generator class="identity"></generator>
 	</primary-key>

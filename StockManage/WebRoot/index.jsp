@@ -11,8 +11,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<LINK rel="Bookmark" href="/favicon.ico" >
-<LINK rel="Shortcut Icon" href="/favicon.ico" />
+<link rel="shortcut icon" href="favicon.ico"> 
+
 <!--[if lt IE 9]>
 <script type="text/javascript" src="lib/html5.js"></script>
 <script type="text/javascript" src="lib/respond.min.js"></script>
@@ -33,9 +33,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="description" content="欢乐股网站是一款由国人开发的轻量级扁平化股票自选模拟学习网站，完全免费注册，模拟炒股，在线论坛，网站现已开源">
 </head>
 <body>
-<%-- <%
-	String name=request.getParameter("name");
-%> --%> 
 <header class="navbar-wrapper">
 	<div class="navbar navbar-fixed-top">
 		<div class="container-fluid cl"> 
@@ -51,8 +48,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
 							<li><a href="javascript:;" onclick="article_add('添加资讯','article-add.jsp')"><i class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
-							<li><a href="javascript:;" onclick="member_add('添加用户','member-add.jsp','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
-						</ul>
+<!-- 							<li><a href="javascript:;" onclick="member_add('添加用户','member-add.jsp','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
+ -->						</ul>
 					</li>
 				</ul>
 			</nav>
@@ -61,7 +58,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li>超级管理员</li>
 					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
+							<li><a href="javascript:;" onclick="admin_profile()">个人资料</a></li>
 							<li><a href="login.jsp">退出</a></li>
+							
 						</ul>
 					</li>
 					<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
@@ -105,8 +104,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<ul>
 					<li><a _href="member-list.jsp" data-title="会员列表" href="javascript:;">用户列表</a></li>
 					<li><a _href="member-record-browse.jsp" data-title="浏览记录" href="javascript:void(0)">用户自选股</a></li>
-					<li><a _href="member-record-download.jsp" data-title="下载记录" href="javascript:void(0)">下载记录</a></li>
-					<li><a _href="member-record-share.jsp" data-title="分享记录" href="javascript:void(0)">分享记录</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -167,22 +164,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="static/h-ui/js/H-ui.admin.js"></script> 
 <script type="text/javascript">
-<%-- $(function($) {
-	var name=<%=name %>;
-	if(name==null)
-		{
-		 location.href = "login.jsp"
-		}
-}); --%>
-/*资讯-添加--默认全屏*/ 
-/* function article_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-} */
 /*资讯-添加--默认缩小可以全屏*/ 
 function article_add(title,url,w,h){
 	layer_show(title,url,w,h);
@@ -191,6 +172,17 @@ function article_add(title,url,w,h){
 function member_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
+/*用户-自选股查看*/
+function admin_profile(){
+		layer.open({
+		type: 2,
+		area: ['700px', '530px'],
+		title: '个人资料',
+		fix: false, //不固定
+		maxmin: true,
+		content: 'profile.jsp'
+		});  
+	}
 </script> 
 </body>
 </html>

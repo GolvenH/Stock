@@ -7,24 +7,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.isoft.stockplus.manager.dao.StockUserDao;
-import com.isoft.stockplus.manager.po.User;
+import com.isoft.stockplus.manager.dao.StockAdminDao;
+import com.isoft.stockplus.manager.po.Admin;
 
 @Service
-public class StockUserService
+public class StockAdminService
 {
 	@Autowired
-	private StockUserDao dao;
+	private StockAdminDao dao;
 
-	public void addUser(User user)
-	{
-
-		dao.saveOrUpdate(user);
-
-		System.out.println("se");
-
-	}
-
+	
 	public Map<String, Object> findbypage(Integer first, Integer max)
 	{
 
@@ -39,16 +31,31 @@ public class StockUserService
 	public Map<String, Object> getUserbyid(String id)
 	{
 		// TODO Auto-generated method stub
-		User user = dao.findById(Integer.valueOf(id));
+		Admin admin = dao.findById(Integer.valueOf(id));
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("User", user);
+		map.put("Admin", admin);
 		return map;
 	}
 
-	public void updateUser(User user)
+	public List<Admin> loginUser(Admin admin)
 	{
-		dao.update(user);
+		return dao.login(admin);
+
+	}
+
+	public void updateUser(Admin admin)
+	{
+
+		dao.update(admin);
+
 		System.out.println("se");
 
 	}
+
+	public List<Admin> login(Admin admin)
+	{
+		return dao.login(admin);
+
+	}
+	
 }
