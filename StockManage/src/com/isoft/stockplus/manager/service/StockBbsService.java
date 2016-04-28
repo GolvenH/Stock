@@ -16,11 +16,6 @@ public class StockBbsService {
 	private StockBbsDao  dao;
 
 	
-	public void addArticle(Bbs bbs){
-		
-		dao.saveOrUpdate(bbs);
-	}
-	
 	
 	public List<Bbs> findall(){
 		
@@ -28,13 +23,6 @@ public class StockBbsService {
 		
 		
 	}
-	
-	public List<Article> findById(){
-		return null;
-		
-//		return dao.findById(Int id);
-	}
-
 
 	 public Map<String,Object> findbypage(Integer first,Integer max){
 			
@@ -45,7 +33,6 @@ public class StockBbsService {
 
 	public void deleteArticlebyid(Integer id)
 	{
-		// TODO Auto-generated method stub
 		dao.deleteById(id);		
 
 	}

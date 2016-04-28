@@ -195,10 +195,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</table>
 </div>
 <footer class="footer mt-20">
-	<div class="container">
-		<p>感谢jQuery、layer、laypage、Validform、UEditor、My97DatePicker、iconfont、Datatables、WebUploaded、icheck、highcharts、bootstrap-Switch<br>
-			Copyright &copy;欢乐科技有限公司<br>
-			本后台系统由<a href="http://www.h-ui.net/" target="_blank" title="H-ui前端框架">H-ui前端框架</a>提供前端技术支持</p>
+<div style="text-align:center;margin:0 auto;">	
+		<p><br>
+			Copyright &copy;欢乐网络科技有限公司<br></p>
 	</div>
 </footer>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 

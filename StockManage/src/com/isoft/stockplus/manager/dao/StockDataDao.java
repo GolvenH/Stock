@@ -5,16 +5,16 @@ import java.util.List;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import com.isoft.stockplus.manager.po.StockData;
+import com.isoft.stockplus.manager.po.Stockdata;
 @Repository
-public class StockDataDao extends Hibernate4BaseDao<StockData> {
+public class StockDataDao extends Hibernate4BaseDao<Stockdata> {
 	
-	public List<StockData> findbyStockinfoId(Integer id){
+	public List<Stockdata> findbyStockinfoId(Integer id){
 		
 		
 		Session session= openSession();
 		
-		List<StockData> list= session.createQuery("from StockData where stockinfoId=?").setInteger(0,id).list();
+		List<Stockdata> list= session.createQuery("from StockData where stockinfoId=?").setInteger(0,id).list();
 		session.close();
 		return list;
 	}

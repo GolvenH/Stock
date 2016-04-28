@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import com.isoft.stockplus.manager.dao.StockDataDao;
 import com.isoft.stockplus.manager.dao.StockInfoDao;
 import com.isoft.stockplus.manager.dao.StockUserDao;
-import com.isoft.stockplus.manager.po.StockData;
-import com.isoft.stockplus.manager.po.StockInfo;;
+import com.isoft.stockplus.manager.po.Stockdata;
+import com.isoft.stockplus.manager.po.Stockinfo;
 
 @Service
 public class StockInfoService {
@@ -20,13 +20,13 @@ public class StockInfoService {
 	
 	@Autowired
 	private StockDataDao sddao;
-	public List<StockInfo>  getall(){
+	public List<Stockinfo>  getall(){
 		return sidao.findAll();
 	}
 	
 	public Map<String,Object> getStockinfobyid(String id){
-		StockInfo si=  	sidao.findById(Integer.valueOf(id));
-		 List<StockData> sdlist=sddao.findbyStockinfoId(Integer.valueOf(id));
+		Stockinfo si=  	sidao.findById(Integer.valueOf(id));
+		 List<Stockdata> sdlist=sddao.findbyStockinfoId(Integer.valueOf(id));
 		 Map<String, Object> map=new HashMap<String, Object>();
 		 map.put("Stock", si);
 		 map.put("StockData", sdlist);

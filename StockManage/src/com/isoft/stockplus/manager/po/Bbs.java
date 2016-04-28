@@ -1,15 +1,20 @@
 package com.isoft.stockplus.manager.po;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * Bbs entity. @author MyEclipse Persistence Tools
@@ -22,7 +27,14 @@ public class Bbs implements java.io.Serializable
 	// Fields
 
 	private Integer bbsId;
+	private Integer userId;
+	private Integer stockinfoId;
+
+	private String userName;
+	private String stockinfoName;
+	private String stockinfoSymbol;
 	private String bbsContent;
+	@JsonFormat(pattern="yyyy:mm:dd hh:mm:ss")
 	private Date bbsTime;
 
 	// Constructors
@@ -33,8 +45,13 @@ public class Bbs implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public Bbs( String bbsContent, Date bbsTime)
-	{
+	public Bbs( String userName,
+			String stockinfoName, String stockinfoSymbol, String bbsContent,
+			Date bbsTime)
+			{
+		this.userName = userName;
+		this.stockinfoName = stockinfoName;
+		this.stockinfoSymbol = stockinfoSymbol;
 		this.bbsContent = bbsContent;
 		this.bbsTime = bbsTime;
 	}
@@ -51,6 +68,39 @@ public class Bbs implements java.io.Serializable
 	public void setBbsId(Integer bbsId)
 	{
 		this.bbsId = bbsId;
+	}
+
+	@Column(name = "user_name")
+	public String getUserName()
+	{
+		return this.userName;
+	}
+
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
+	}
+
+	@Column(name = "stockinfo_name")
+	public String getStockinfoName()
+	{
+		return this.stockinfoName;
+	}
+
+	public void setStockinfoName(String stockinfoName)
+	{
+		this.stockinfoName = stockinfoName;
+	}
+
+	@Column(name = "stockinfo_symbol")
+	public String getStockinfoSymbol()
+	{
+		return this.stockinfoSymbol;
+	}
+
+	public void setStockinfoSymbol(String stockinfoSymbol)
+	{
+		this.stockinfoSymbol = stockinfoSymbol;
 	}
 
 	@Column(name = "bbs_content")
@@ -74,5 +124,25 @@ public class Bbs implements java.io.Serializable
 	{
 		this.bbsTime = bbsTime;
 	}
+	@Column(name = "user_id")
+	public Integer getUserId()
+	{
+		return userId;
+	}
 
+	public void setUserId(Integer userId)
+	{
+		this.userId = userId;
+	}
+	
+	@Column(name = "stockinfo_id")
+	public Integer getStockinfoId()
+	{
+		return stockinfoId;
+	}
+
+	public void setStockinfoId(Integer stockinfoId)
+	{
+		this.stockinfoId = stockinfoId;
+	}
 }

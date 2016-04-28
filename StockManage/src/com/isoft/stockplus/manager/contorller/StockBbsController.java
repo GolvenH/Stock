@@ -20,18 +20,7 @@ public class StockBbsController extends BaseController {
 	@Autowired
 	private StockBbsService  service;
 	
-	
-	
-	
-	@RequestMapping("/add.do")
-	@ResponseBody
-	public String addArticle(Bbs bbs)
-	{		
-		service.addArticle(bbs);
-		return "OK";
-	}
-
-	@RequestMapping("/findalluser.do")
+	@RequestMapping("/findall.do")
 	@ResponseBody
 	public Map<String,Object> findArticle(Integer page,Integer rows){
     	
